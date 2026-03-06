@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Growth Library | James Brooks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=EB+Garamond:wght@400;500&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3N32VB');</script>
+<!-- End Google Tag Manager -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0B1F3A; --mid-navy: #152E50; --gold: #C9A84C; --gold-light: #E8C97A;
+    --gold-muted: #A8883A; --off-white: #F5F1EA; --warm-white: #FAF8F4;
+    --text-muted: #6B7E94; --max-w: 1100px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--warm-white); color: var(--navy); font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; }
+
+  /* HERO */
+  .hero { background: var(--navy); padding: 80px 24px 70px; position: relative; overflow: hidden; text-align: center; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 70%); pointer-events:none; }
+  .hero-inner { max-width: 700px; margin: 0 auto; position: relative; }
+  .hero-os { font-family:'DM Sans',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+  .hero h1 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(38px,6vw,58px); line-height:1.1; color:var(--off-white); letter-spacing:-0.01em; margin-bottom:20px; }
+  .hero h1 em { font-style:italic; color:var(--gold-light); }
+  .hero-sub { font-family:'EB Garamond',serif; font-size:20px; color:rgba(245,241,234,0.75); margin-bottom:36px; line-height:1.6; }
+  .hero-stats { display:flex; justify-content:center; gap:0; border-top:1px solid rgba(201,168,76,0.2); border-bottom:1px solid rgba(201,168,76,0.2); padding:20px 0; flex-wrap:wrap; }
+  .hero-stat { padding:6px 32px; border-right:1px solid rgba(201,168,76,0.2); }
+  .hero-stat:last-child { border-right:none; }
+  .hero-stat-num { font-family:'Playfair Display',serif; font-weight:700; font-size:28px; color:var(--gold-light); display:block; }
+  .hero-stat-label { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.55); text-transform:uppercase; letter-spacing:0.1em; }
+
+  /* OPT-IN BAR */
+  .optin-bar { background: var(--mid-navy); border-top: 3px solid var(--gold); border-bottom: 1px solid rgba(201,168,76,0.12); padding: 24px; }
+  .optin-bar-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: space-between; }
+  .optin-bar-text p { font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300; color:var(--off-white); margin:0; }
+  .optin-bar-text strong { font-weight:600; color:var(--gold-light); }
+  .optin-form { display:flex; gap:8px; flex-wrap:wrap; }
+  .optin-input { background:rgba(255,255,255,0.07); border:1px solid rgba(201,168,76,0.25); border-radius:3px; padding:11px 16px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; color:var(--off-white); width:240px; outline:none; transition:border-color 0.2s; }
+  .optin-input::placeholder { color:rgba(245,241,234,0.35); }
+  .optin-input:focus { border-color:rgba(201,168,76,0.6); }
+  .optin-btn { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:11px 22px; border-radius:3px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .optin-btn:hover { background:var(--gold-light); }
+  .optin-success { display:none; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--gold-light); font-weight:600; padding:11px 0; }
+
+  /* NAV */
+  .engine-nav { background:white; border-bottom:1px solid rgba(11,31,58,0.08); padding:0 24px; position:sticky; top:0; z-index:100; }
+  .engine-nav-inner { max-width:var(--max-w); margin:0 auto; display:flex; gap:0; overflow-x:auto; }
+  .engine-nav-item { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:var(--text-muted); padding:16px 20px; white-space:nowrap; text-decoration:none; border-bottom:2px solid transparent; transition:color 0.2s, border-color 0.2s; }
+  .engine-nav-item:hover { color:var(--navy); border-bottom-color:var(--gold); }
+
+  /* CONTENT */
+  .content { max-width:var(--max-w); margin:0 auto; padding:0 24px 80px; }
+
+  /* ENGINE SECTION */
+  .engine-section { padding-top:60px; }
+  .engine-header { border-left:3px solid var(--engine-color); padding:0 0 0 20px; margin-bottom:28px; }
+  .engine-label-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .engine-badge { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:white; padding:4px 10px; border-radius:2px; }
+  .engine-count { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); }
+  .engine-header h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(22px,3vw,30px); color:var(--navy); margin-bottom:6px; }
+  .engine-desc { font-family:'EB Garamond',serif; font-size:17px; color:var(--text-muted); font-style:italic; margin:0; }
+
+  /* CARDS GRID */
+  .cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .resource-card { display:flex; flex-direction:column; background:white; border-radius:6px; border:1px solid rgba(11,31,58,0.08); border-top:3px solid var(--engine-color); padding:22px; transition:transform 0.15s, box-shadow 0.15s; text-decoration:none; color:inherit; }
+  .resource-card.live { cursor:pointer; }
+  .resource-card.live:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(11,31,58,0.1); }
+  .resource-card.locked { opacity:0.6; }
+  .card-number { font-family:'Playfair Display',serif; font-weight:700; font-size:13px; color:var(--engine-color); margin-bottom:10px; opacity:0.8; }
+  .card-body { flex:1; }
+  .card-body h3 { font-family:'Playfair Display',serif; font-weight:700; font-size:16px; color:var(--navy); margin-bottom:8px; line-height:1.3; }
+  .card-body p { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; color:var(--text-muted); line-height:1.6; margin:0; }
+  .card-cta { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-top:16px; padding-top:14px; border-top:1px solid rgba(11,31,58,0.07); }
+  .resource-card.live .card-cta { color:var(--engine-color); }
+  .card-cta.coming { color:var(--text-muted); }
+
+  /* CTA */
+  .cta-block { background:var(--navy); border-radius:6px; padding:48px 40px; margin-top:60px; text-align:center; position:relative; overflow:hidden; }
+  .cta-block::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .cta-eyebrow { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .cta-block h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(24px,4vw,34px); color:var(--off-white); line-height:1.2; margin-bottom:6px; }
+  .cta-block h2 em { color:var(--gold-light); font-style:italic; }
+  .cta-subhead { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(18px,3vw,22px); color:var(--gold-light); font-style:italic; margin-bottom:18px; }
+  .cta-body { font-family:'EB Garamond',serif; font-size:18px; color:rgba(245,241,234,0.75); max-width:520px; margin:0 auto 28px; line-height:1.65; }
+  .cta-btn { display:inline-block; background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; padding:15px 38px; border-radius:3px; transition:background 0.2s; }
+  .cta-btn:hover { background:var(--gold-light); }
+  .cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; }
+
+  /* FOOTER */
+  footer { background:var(--mid-navy); padding:26px 24px; border-top:1px solid rgba(201,168,76,0.15); }
+  .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .footer-brand { font-family:'Playfair Display',serif; font-weight:700; font-size:16px; color:var(--off-white); }
+  .footer-meta { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); }
+
+  @media(max-width:900px){ .cards-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:600px){ .cards-grid{grid-template-columns:1fr;} .hero-stat{padding:6px 16px;} .cta-block{padding:34px 22px;} .optin-input{width:100%;} .optin-form{width:100%;} .optin-btn{width:100%;text-align:center;} }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3N32VB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-os">James Brooks</div>
+    <h1>The Growth <em>Library</em></h1>
+    <p class="hero-sub">24 AI-powered prompt packs for founder-led B2B companies. Free. Organised across the four engines of the Growth OS.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">24</span>
+        <span class="hero-stat-label">Resources</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">4</span>
+        <span class="hero-stat-label">Engines</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">3</span>
+        <span class="hero-stat-label">Live now</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">Free</span>
+        <span class="hero-stat-label">Always</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="optin-bar">
+  <div class="optin-bar-inner">
+    <div class="optin-bar-text">
+      <p><strong>Get the full library delivered to your inbox.</strong> New resources added every week. No spam. Unsubscribe any time.</p>
+    </div>
+    <div>
+      <div class="optin-form" id="optin-form">
+        <input type="email" class="optin-input" id="optin-email" placeholder="Your email address">
+        <button class="optin-btn" onclick="submitOptIn()">Get the library</button>
+      </div>
+      <div class="optin-success" id="optin-success">You're in. Check your inbox shortly.</div>
+    </div>
+  </div>
+</div>
+
+<nav class="engine-nav">
+  <div class="engine-nav-inner">
+    <a href="#connection" class="engine-nav-item">Connection Engine</a>
+    <a href="#attention" class="engine-nav-item">Attention Engine</a>
+    <a href="#signal" class="engine-nav-item">Signal Engine</a>
+    <a href="#pipeline" class="engine-nav-item">Pipeline Engine</a>
+  </div>
+</nav>
+
+<main class="content">
+  <section class="engine-section" id="connection">
+    <div class="engine-header" style="--engine-color:#2E4E8A;">
+      <div class="engine-header-inner">
+        <div class="engine-label-row">
+          <span class="engine-badge" style="background:#2E4E8A;">Connection Engine</span>
+          <span class="engine-count">3 of 6 available</span>
+        </div>
+        <h2>Connection Engine</h2>
+        <p class="engine-desc">Build and grow the right LinkedIn audience</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <a href="https://jamesbrooks.com/ai-icp-architect" class="resource-card live" style="--engine-color:#2E4E8A;">
+          <div class="card-number">01</div>
+          <div class="card-body">
+            <h3>AI ICP Architect</h3>
+            <p>Define your ideal buyer with precision so every post, message and connection lands with the right person.</p>
+          </div>
+          <div class="card-cta">Access resource &rarr;</div>
+        </a>
+<a href="https://jamesbrooks.com/ai-profile" class="resource-card live" style="--engine-color:#2E4E8A;">
+          <div class="card-number">02</div>
+          <div class="card-body">
+            <h3>AI Profile Positioning Blueprint</h3>
+            <p>Rewrite your LinkedIn profile in 20 minutes so the right founders come to you before you ever send a connection request.</p>
+          </div>
+          <div class="card-cta">Access resource &rarr;</div>
+        </a>
+<a href="https://jamesbrooks.com/ai-comment-engine" class="resource-card live" style="--engine-color:#2E4E8A;">
+          <div class="card-number">03</div>
+          <div class="card-body">
+            <h3>AI Comment Visibility Engine</h3>
+            <p>Generate 50+ inbound connection requests per week without posting a single piece of content.</p>
+          </div>
+          <div class="card-cta">Access resource &rarr;</div>
+        </a>
+<div class="resource-card locked" style="--engine-color:#2E4E8A;">
+          <div class="card-number">04</div>
+          <div class="card-body">
+            <h3>AI Connection Request Framework</h3>
+            <p>The AI prompts that get connection requests accepted by cold ICPs without sounding like outreach.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#2E4E8A;">
+          <div class="card-number">05</div>
+          <div class="card-body">
+            <h3>AI Feed Intelligence Tracker</h3>
+            <p>Know exactly which ICPs to engage with each week and what to say to start the right conversations.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#2E4E8A;">
+          <div class="card-number">06</div>
+          <div class="card-body">
+            <h3>AI Founder Network Plan</h3>
+            <p>Build a 90-day LinkedIn network plan that fills your feed with the right people and your pipeline with warm leads.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+    </div>
+  </section>
+  <section class="engine-section" id="attention">
+    <div class="engine-header" style="--engine-color:#1B6B3A;">
+      <div class="engine-header-inner">
+        <div class="engine-label-row">
+          <span class="engine-badge" style="background:#1B6B3A;">Attention Engine</span>
+          <span class="engine-count">0 of 6 available</span>
+        </div>
+        <h2>Attention Engine</h2>
+        <p class="engine-desc">Maintain authority and keep prospects warm</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="resource-card locked" style="--engine-color:#1B6B3A;">
+          <div class="card-number">07</div>
+          <div class="card-body">
+            <h3>AI Clarity Workflow</h3>
+            <p>Clarify your message in 20 minutes so every post, email and conversation lands with precision.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#1B6B3A;">
+          <div class="card-number">08</div>
+          <div class="card-body">
+            <h3>AI 20-Angle Messaging Matrix</h3>
+            <p>Generate 20 distinct content angles from a single idea so you never run out of things to say to your ICP.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#1B6B3A;">
+          <div class="card-number">09</div>
+          <div class="card-body">
+            <h3>AI LinkedIn Post Builder</h3>
+            <p>Write high-performing LinkedIn posts in 15 minutes with hooks that stop the scroll.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#1B6B3A;">
+          <div class="card-number">10</div>
+          <div class="card-body">
+            <h3>AI Case Study Generator</h3>
+            <p>Transform a client result into a persuasive authority asset that closes deals before the sales call even starts.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#1B6B3A;">
+          <div class="card-number">11</div>
+          <div class="card-body">
+            <h3>AI Content Repurposing System</h3>
+            <p>Turn one piece of long-form content into 10 authority assets across posts, emails, hooks and ad copy.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#1B6B3A;">
+          <div class="card-number">12</div>
+          <div class="card-body">
+            <h3>AI Email Nurture Builder</h3>
+            <p>Generate a 5-email value-first sequence that keeps cold leads warm and builds trust on autopilot.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+    </div>
+  </section>
+  <section class="engine-section" id="signal">
+    <div class="engine-header" style="--engine-color:#7B3F00;">
+      <div class="engine-header-inner">
+        <div class="engine-label-row">
+          <span class="engine-badge" style="background:#7B3F00;">Signal Engine</span>
+          <span class="engine-count">0 of 6 available</span>
+        </div>
+        <h2>Signal Engine</h2>
+        <p class="engine-desc">Detect buying intent before your competitors do</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="resource-card locked" style="--engine-color:#7B3F00;">
+          <div class="card-number">13</div>
+          <div class="card-body">
+            <h3>AI Intent Signal Map</h3>
+            <p>Map the exact signals that tell you a prospect is in-market right now, before they raise their hand.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#7B3F00;">
+          <div class="card-number">14</div>
+          <div class="card-body">
+            <h3>AI Buyer Timing Model</h3>
+            <p>Know exactly when your ICP is ready to buy so your outreach lands at the right moment every time.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#7B3F00;">
+          <div class="card-number">15</div>
+          <div class="card-body">
+            <h3>AI Lead Scoring Blueprint</h3>
+            <p>Score every lead in your pipeline automatically so you know exactly who to prioritise this week.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#7B3F00;">
+          <div class="card-number">16</div>
+          <div class="card-body">
+            <h3>AI Trigger Event Tracker</h3>
+            <p>Track the business events that push your ICP into the market so you can reach them at the perfect moment.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#7B3F00;">
+          <div class="card-number">17</div>
+          <div class="card-body">
+            <h3>AI Warm Lead Identifier</h3>
+            <p>Know exactly which leads are warming up across email, LinkedIn and your website before they ever reply.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#7B3F00;">
+          <div class="card-number">18</div>
+          <div class="card-body">
+            <h3>AI Anti-Objection Guarantee Pack</h3>
+            <p>The risk-reversal formulas that turn 'I need to think about it' into 'Let's start Monday' without discounting.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+    </div>
+  </section>
+  <section class="engine-section" id="pipeline">
+    <div class="engine-header" style="--engine-color:#6B2D8B;">
+      <div class="engine-header-inner">
+        <div class="engine-label-row">
+          <span class="engine-badge" style="background:#6B2D8B;">Pipeline Engine</span>
+          <span class="engine-count">0 of 6 available</span>
+        </div>
+        <h2>Pipeline Engine</h2>
+        <p class="engine-desc">Activate, convert and close</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="resource-card locked" style="--engine-color:#6B2D8B;">
+          <div class="card-number">19</div>
+          <div class="card-body">
+            <h3>AI 5-Prompt Reply System</h3>
+            <p>The cold messaging framework that turned 15 cold accounts into 9 warm replies in 48 hours without a single 'just checking in'.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#6B2D8B;">
+          <div class="card-number">20</div>
+          <div class="card-body">
+            <h3>AI LinkedIn Comment-to-DM Playbook</h3>
+            <p>Convert post engagement into booked calls using the exact mechanic behind 65,000 leads in 12 months.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#6B2D8B;">
+          <div class="card-number">21</div>
+          <div class="card-body">
+            <h3>AI Deal Acceleration Playbook</h3>
+            <p>Shorten your sales cycle by 30% using structured follow-up that keeps deals moving without chasing.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#6B2D8B;">
+          <div class="card-number">22</div>
+          <div class="card-body">
+            <h3>AI 3-Message Revival Cadence</h3>
+            <p>Turn cold silence into warm replies and revive 30% of dead threads using three messages most founders never think to send.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#6B2D8B;">
+          <div class="card-number">23</div>
+          <div class="card-body">
+            <h3>AI Stuck Deal Revival Framework</h3>
+            <p>Move stalled deals forward in 48 hours without discounting, without pressure and without losing your position.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+<div class="resource-card locked" style="--engine-color:#6B2D8B;">
+          <div class="card-number">24</div>
+          <div class="card-body">
+            <h3>The 90-Day Growth OS Blueprint</h3>
+            <p>The complete system that took my clients from 2 meetings a month to 12 and how to install it in your business in 90 days.</p>
+          </div>
+          <div class="card-cta coming">Coming soon</div>
+        </div>
+    </div>
+  </section>
+
+  <div class="cta-block">
+    <div class="cta-eyebrow">The Growth OS</div>
+    <h2>You have the resources.</h2>
+    <div class="cta-subhead">Now build the system around them.</div>
+    <p class="cta-body">The Growth OS helps founder-led B2B companies build predictable pipeline. Compete on intelligence, not headcount. AI is your multiplier. This system is your advantage.</p>
+    <a href="https://jamesbrooks.com/growth-os" class="cta-btn">See the Growth OS &rarr;</a>
+    <p class="cta-note">jamesbrooks.com/growth-os</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">James Brooks</div>
+    <div class="footer-meta">The Growth Library &nbsp;&middot;&nbsp; jamesbrooks.com</div>
+  </div>
+</footer>
+
+<script>
+function submitOptIn() {
+  const email = document.getElementById('optin-email').value;
+  if (!email || !email.includes('@')) {
+    document.getElementById('optin-email').style.borderColor = 'rgba(201,168,76,0.8)';
+    return;
+  }
+  // Encharge API integration placeholder - replace API_KEY with your key
+  document.getElementById('optin-form').style.display = 'none';
+  document.getElementById('optin-success').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
