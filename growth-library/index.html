@@ -38,19 +38,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hero-stat-num { font-family:'Playfair Display',serif; font-weight:700; font-size:28px; color:var(--gold-light); display:block; }
   .hero-stat-label { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.55); text-transform:uppercase; letter-spacing:0.1em; }
 
-  /* OPT-IN BAR */
-  .optin-bar { background: var(--mid-navy); border-top: 3px solid var(--gold); border-bottom: 1px solid rgba(201,168,76,0.12); padding: 24px; }
-  .optin-bar-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: space-between; }
-  .optin-bar-text p { font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300; color:var(--off-white); margin:0; }
-  .optin-bar-text strong { font-weight:600; color:var(--gold-light); }
-  .optin-form { display:flex; gap:8px; flex-wrap:wrap; }
-  .optin-input { background:rgba(255,255,255,0.07); border:1px solid rgba(201,168,76,0.25); border-radius:3px; padding:11px 16px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; color:var(--off-white); width:240px; outline:none; transition:border-color 0.2s; }
-  .optin-input::placeholder { color:rgba(245,241,234,0.35); }
-  .optin-input:focus { border-color:rgba(201,168,76,0.6); }
-  .optin-btn { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:11px 22px; border-radius:3px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
-  .optin-btn:hover { background:var(--gold-light); }
-  .optin-success { display:none; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--gold-light); font-weight:600; padding:11px 0; }
-
   /* NAV */
   .engine-nav { background:white; border-bottom:1px solid rgba(11,31,58,0.08); padding:0 24px; position:sticky; top:0; z-index:100; }
   .engine-nav-inner { max-width:var(--max-w); margin:0 auto; display:flex; gap:0; overflow-x:auto; }
@@ -63,9 +50,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ENGINE SECTION */
   .engine-section { padding-top:60px; }
   .engine-header { border-left:3px solid var(--engine-color); padding:0 0 0 20px; margin-bottom:28px; }
-  .engine-label-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
-  .engine-badge { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:white; padding:4px 10px; border-radius:2px; }
-  .engine-count { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); }
   .engine-header h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(22px,3vw,30px); color:var(--navy); margin-bottom:6px; }
   .engine-desc { font-family:'EB Garamond',serif; font-size:17px; color:var(--text-muted); font-style:italic; margin:0; }
 
@@ -126,31 +110,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="hero-stat-label">Engines</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-num">3</span>
-        <span class="hero-stat-label">Live now</span>
-      </div>
-      <div class="hero-stat">
         <span class="hero-stat-num">Free</span>
         <span class="hero-stat-label">Always</span>
       </div>
     </div>
   </div>
 </header>
-
-<div class="optin-bar">
-  <div class="optin-bar-inner">
-    <div class="optin-bar-text">
-      <p><strong>Get the full library delivered to your inbox.</strong> New resources added every week. No spam. Unsubscribe any time.</p>
-    </div>
-    <div>
-      <div class="optin-form" id="optin-form">
-        <input type="email" class="optin-input" id="optin-email" placeholder="Your email address">
-        <button class="optin-btn" onclick="submitOptIn()">Get the library</button>
-      </div>
-      <div class="optin-success" id="optin-success">You're in. Check your inbox shortly.</div>
-    </div>
-  </div>
-</div>
 
 <nav class="engine-nav">
   <div class="engine-nav-inner">
@@ -165,10 +130,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="engine-section" id="connection">
     <div class="engine-header" style="--engine-color:#2E4E8A;">
       <div class="engine-header-inner">
-        <div class="engine-label-row">
-          <span class="engine-badge" style="background:#2E4E8A;">Connection Engine</span>
-          <span class="engine-count">3 of 6 available</span>
-        </div>
         <h2>Connection Engine</h2>
         <p class="engine-desc">Build and grow the right LinkedIn audience</p>
       </div>
@@ -227,10 +188,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="engine-section" id="attention">
     <div class="engine-header" style="--engine-color:#1B6B3A;">
       <div class="engine-header-inner">
-        <div class="engine-label-row">
-          <span class="engine-badge" style="background:#1B6B3A;">Attention Engine</span>
-          <span class="engine-count">0 of 6 available</span>
-        </div>
         <h2>Attention Engine</h2>
         <p class="engine-desc">Maintain authority and keep prospects warm</p>
       </div>
@@ -289,10 +246,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="engine-section" id="signal">
     <div class="engine-header" style="--engine-color:#7B3F00;">
       <div class="engine-header-inner">
-        <div class="engine-label-row">
-          <span class="engine-badge" style="background:#7B3F00;">Signal Engine</span>
-          <span class="engine-count">0 of 6 available</span>
-        </div>
         <h2>Signal Engine</h2>
         <p class="engine-desc">Detect buying intent before your competitors do</p>
       </div>
@@ -351,10 +304,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="engine-section" id="pipeline">
     <div class="engine-header" style="--engine-color:#6B2D8B;">
       <div class="engine-header-inner">
-        <div class="engine-label-row">
-          <span class="engine-badge" style="background:#6B2D8B;">Pipeline Engine</span>
-          <span class="engine-count">0 of 6 available</span>
-        </div>
         <h2>Pipeline Engine</h2>
         <p class="engine-desc">Activate, convert and close</p>
       </div>
@@ -428,18 +377,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<script>
-function submitOptIn() {
-  const email = document.getElementById('optin-email').value;
-  if (!email || !email.includes('@')) {
-    document.getElementById('optin-email').style.borderColor = 'rgba(201,168,76,0.8)';
-    return;
-  }
-  // Encharge API integration placeholder - replace API_KEY with your key
-  document.getElementById('optin-form').style.display = 'none';
-  document.getElementById('optin-success').style.display = 'block';
-}
-</script>
 
 </body>
 </html>
