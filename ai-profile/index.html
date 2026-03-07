@@ -192,6 +192,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M3N32VB');</script>
 <!-- End Google Tag Manager -->
+<script type="text/javascript">!function(){if(!window.EncTracking||!window.EncTracking.started){window.EncTracking=Object.assign({}, window.EncTracking, {queue:window.EncTracking&&window.EncTracking.queue?window.EncTracking.queue:[],track:function(t){this.queue.push({type:"track",props:t})},identify:function(t){this.queue.push({type:"identify",props:t})},started:!0});var t=window.EncTracking;t.writeKey="BqWRb9tzFj1gjopYXGhriAyaU",t.hasOptedIn=true,t.shouldGetConsent=true,t.hasOptedIn&&(t.shouldGetConsent=!1),t.optIn=function(){t.hasOptedIn=!0,t&&t.init&&t.init()},t.optOut=function(){t.hasOptedIn=!1,t&&t.setOptOut&&t.setOptOut(!0)};var n=function(t){var n=document.createElement("script");n.type="text/javascript",n.async=void 0===t||t,n.src="https://resources-app.encharge.io/encharge-tracking.min.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};"complete"===document.readyState?n():window.attachEvent?window.attachEvent("onload",n):window.addEventListener("load",n,!1)}}();</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -508,29 +509,26 @@ function submitOptIn(sourceTag) {
   btn.disabled = true;
   btn.textContent = 'Sending...';
 
-  fetch('https://ingest.encharge.io/v1/people', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Encharge-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjE0ODc1NCwibmFtZSI6ImJhc2UifQ.zicaDH6sR0oNELbT0y0QcOXNaSB5IvdHvJ9vxte2jcw'
-    },
-    body: JSON.stringify({
-      people: [{
-        email: email,
-        tags: ['growth library', sourceTag]
-      }]
-    })
-  })
-  .then(function(res) {
+  try {
+    if (!window.EncTracking) {
+      window.EncTracking = {
+        queue: [],
+        track: function(t){ this.queue.push({type:"track", props:t}); },
+        identify: function(t){ this.queue.push({type:"identify", props:t}); }
+      };
+    }
+    window.EncTracking.identify({
+      email: email,
+      tags: 'growth library, ' + sourceTag
+    });
     document.getElementById('optin-form').style.display = 'none';
     success.style.display = 'block';
-  })
-  .catch(function() {
+  } catch(e) {
     btn.disabled = false;
     btn.textContent = 'Send me the library';
     errEl.style.display = 'block';
     setTimeout(function(){ errEl.style.display = 'none'; }, 4000);
-  });
+  }
 }
 </script>
 </body>
