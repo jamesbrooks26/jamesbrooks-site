@@ -179,6 +179,10 @@
     .subscribe-form{width:100%;}
     .subscribe-btn{width:100%;text-align:center;}
   }
+
+
+  .optin-success { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--gold-light); font-weight:600; padding:11px 0; }
+  .optin-error { font-family:'DM Sans',sans-serif; font-size:13px; color:#ff6b6b; font-weight:400; padding:11px 0; }
 </style>
 
 <!-- Google Tag Manager -->
@@ -212,16 +216,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="subscribe-bar">
   <div class="subscribe-bar-inner">
     <div class="subscribe-bar-text">
-      <p><strong>This is 3 of 24 free resources</strong> in the Growth OS Library. Get the full set delivered to your inbox.</p>
+      <p><strong>This is 3 of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
       <p class="subscribe-note">No spam. Unsubscribe any time.</p>
     </div>
     <div>
-      <div class="subscribe-form">
-        <input type="email" class="subscribe-input" placeholder="Your email address">
-        <button class="subscribe-btn">Send me the library</button>
+      <div class="subscribe-form" id="optin-form">
+        <input type="email" class="subscribe-input" id="optin-email" placeholder="Your email address">
+        <button class="subscribe-btn" id="optin-btn" onclick="submitOptIn('lm-03-comment-engine')">Send me the library</button>
       </div>
+      <div class="optin-success" id="optin-success" style="display:none;">You're in. Check your inbox shortly.</div>
+      <div class="optin-error" id="optin-error" style="display:none;">Something went wrong. Please try again.</div>
     </div>
   </div>
+</div>
 </div>
 
 <main class="content">
@@ -447,5 +454,46 @@ One thing you have in common or find genuinely interesting: [shared context, ind
   </div>
 </footer>
 
+
+<script>
+function submitOptIn(sourceTag) {
+  var email = document.getElementById('optin-email').value.trim();
+  var btn = document.getElementById('optin-btn');
+  var success = document.getElementById('optin-success');
+  var errEl = document.getElementById('optin-error');
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    document.getElementById('optin-email').style.borderColor = 'rgba(201,168,76,0.9)';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  fetch('https://ingest.encharge.io/v1/people', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Encharge-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjE0ODc1NCwibmFtZSI6ImJhc2UifQ.zicaDH6sR0oNELbT0y0QcOXNaSB5IvdHvJ9vxte2jcw'
+    },
+    body: JSON.stringify({
+      people: [{
+        email: email,
+        tags: ['growth library', sourceTag]
+      }]
+    })
+  })
+  .then(function(res) {
+    document.getElementById('optin-form').style.display = 'none';
+    success.style.display = 'block';
+  })
+  .catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Send me the library';
+    errEl.style.display = 'block';
+    setTimeout(function(){ errEl.style.display = 'none'; }, 4000);
+  });
+}
+</script>
 </body>
 </html>
