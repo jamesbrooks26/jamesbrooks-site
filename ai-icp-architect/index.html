@@ -50,7 +50,6 @@
   .subscribe-input:focus { border-color:rgba(201,168,76,0.6); }
   .subscribe-btn { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:10px 20px; border-radius:3px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
   .subscribe-btn:hover { background:var(--gold-light); }
-  .subscribe-note { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:6px; }
 
   /* CONTENT */
   .content { max-width:var(--max-w); margin:0 auto; padding:0 24px 80px; }
@@ -110,7 +109,7 @@
   .what-doing { background:var(--off-white); border-radius:4px; padding:14px 18px; margin-bottom:18px; }
   .what-doing p { font-family:'EB Garamond',serif; font-size:16px; color:var(--text-muted); font-style:italic; margin:0; max-width:100%; }
   .prompt-code { background:var(--navy); border-radius:4px; padding:26px 28px; margin-bottom:14px; position:relative; }
-  .prompt-code::before { content:'PROMPT'; position:absolute; top:13px; right:16px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; color:var(--gold); opacity:0.6; }
+  .prompt-code::before { content:''; }
   .prompt-code pre { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; line-height:1.85; color:var(--off-white); white-space:pre-wrap; word-break:break-word; }
   .prompt-code pre strong { color:var(--gold-light); font-weight:600; }
   .output-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.28); border-radius:3px; padding:8px 14px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:var(--gold-muted); }
@@ -147,7 +146,7 @@
   .where-fits p:last-child { margin-bottom:0; }
 
   /* CTA */
-  .cta-block { background:var(--navy); border-radius:6px; padding:48px 40px; margin-top:52px; text-align:center; position:relative; overflow:hidden; }
+  .cta-block { text-align:center; background:var(--navy); border-radius:6px; padding:48px 40px; margin-top:52px;  position:relative; overflow:hidden; }
   .cta-block::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,168,76,0.1) 0%, transparent 70%); pointer-events:none; }
   .cta-block::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
   .cta-eyebrow { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; position:relative; }
@@ -157,7 +156,7 @@
   .cta-block .cta-body { font-family:'EB Garamond',serif; font-size:18px; color:rgba(245,241,234,0.75); max-width:520px; margin:0 auto 30px; line-height:1.65; position:relative; }
   .cta-btn { display:inline-block; background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; padding:15px 38px; border-radius:3px; position:relative; transition:background 0.2s, transform 0.15s; }
   .cta-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
-  .cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; position:relative; }
+  .cta-note { display:block; width:100%; text-align:center; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; }
 
   /* FOOTER */
   footer { background:var(--mid-navy); padding:26px 24px; border-top:1px solid rgba(201,168,76,0.15); }
@@ -183,6 +182,17 @@
 
   .optin-success { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--gold-light); font-weight:600; padding:11px 0; }
   .optin-error { font-family:'DM Sans',sans-serif; font-size:13px; color:#ff6b6b; font-weight:400; padding:11px 0; }
+
+  .prompt-instruction { background: var(--pale-blue); border-left: 3px solid var(--mid-blue); padding: 14px 20px; margin-bottom: 32px; border-radius: 3px; }
+  .prompt-instruction p { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; color: var(--deep-navy); margin: 0; }
+  .copy-btn { cursor: pointer; transition: background 0.15s; }
+  .copy-btn:hover { background: var(--mid-blue) !important; }
+  .copy-btn.copied { background: #2E7D32 !important; }
+  .copy-btn.copied::after { content: ' Copied!'; }
+
+  .copy-prompt-btn { position:absolute; top:12px; right:14px; background:transparent; border:1px solid rgba(201,168,76,0.35); border-radius:3px; color:var(--gold); font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px; cursor:pointer; transition:background 0.15s, border-color 0.15s; }
+  .copy-prompt-btn:hover { background:rgba(201,168,76,0.12); border-color:var(--gold); }
+  .copy-prompt-btn.copied { background:rgba(46,125,50,0.2); border-color:#4CAF50; color:#4CAF50; }
 </style>
 
 <!-- Google Tag Manager -->
@@ -202,10 +212,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-os">The Growth OS</div>
-    <div class="hero-engine-label">Connection Engine</div>
+    <div class="hero-os">Connection Engine</div>
     <h1>The AI <em>ICP</em> Architect</h1>
-    <p class="hero-sub">Define exactly who your Growth OS is built to reach, so every post, email and conversation lands with the right person.</p>
+    <p class="hero-sub">Define exactly who you are built to reach, so every post, email and conversation lands with the right person.</p>
     <div class="promise-strip">
       <div class="promise-item">&#9203; 20-minute promise</div>
       <div class="promise-item">&#128203; Paste-ready ICP profile</div>
@@ -217,12 +226,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="subscribe-bar">
   <div class="subscribe-bar-inner">
     <div class="subscribe-bar-text">
-      <p><strong>This is 1 of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
-      <p class="subscribe-note">No spam. Unsubscribe any time.</p>
+      <p><strong>This is one of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
     </div>
     <div>
       <div class="subscribe-form" id="optin-form">
-        <input type="email" class="subscribe-input" id="optin-email" placeholder="Your email address">
+        <input type="text" class="subscribe-input" id="optin-firstname" placeholder="First name">
+        <input type="email" class="subscribe-input" id="optin-email" placeholder="Email address">
         <button class="subscribe-btn" id="optin-btn" onclick="submitOptIn('lm-01-icp-architect')">Send me the library</button>
       </div>
       <div class="optin-success" id="optin-success" style="display:none;">You're in. Check your inbox shortly.</div>
@@ -288,6 +297,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <hr class="rule">
 
+  <div class="prompt-instruction">
+  <p>Copy any prompt below and paste it directly into ChatGPT, Claude, or any AI tool. Each prompt is ready to use immediately.</p>
+</div>
+
   <div class="prompt-section">
     <div class="prompt-header">
       <div class="prompt-number">01</div>
@@ -300,6 +313,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>What you're doing: Mining your existing client base for patterns. Your best clients are already telling you exactly who to target. You just need to listen.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> B2B growth strategist specialising in ICP definition for founder-led businesses.
 
 <strong>TASK:</strong> Analyse the client inputs below and identify the single highest-value ICP.
@@ -339,6 +353,7 @@ Your current average deal value: [&euro;/&pound;/$]
       <p>What you're doing: Finding the trigger events that move your ICP from passive interest to active buying. These are the signals you'll watch for on LinkedIn.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> B2B sales strategist. Buying signals are your speciality.
 
 <strong>TASK:</strong> Using the ICP Profile from Prompt 1, identify the 5 most common trigger events that push this ICP into the market for a solution like mine.
@@ -370,6 +385,7 @@ Your current average deal value: [&euro;/&pound;/$]
       <p>What you're doing: Harvesting the words your ICP already uses. The best copy doesn't sound clever. It sounds familiar. Use this output to write every post, email, and CTA.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> B2B copywriter and customer research specialist.
 
 <strong>TASK:</strong> Using the ICP Profile and trigger events above, generate a Voice of Customer (VoC) dictionary for this specific ICP.
@@ -454,7 +470,7 @@ Your current average deal value: [&euro;/&pound;/$]
     <div class="cta-subhead">Now build the system around it.</div>
     <p class="cta-body">The Growth OS helps founder-led B2B companies build predictable pipeline. Compete on intelligence, not headcount. AI is your multiplier. This system is your advantage.</p>
     <a href="https://jamesbrooks.com/growth-os" class="cta-btn">See the Growth OS &rarr;</a>
-    <p class="cta-note">jamesbrooks.com/growth-os</p>
+    <div style="text-align:center;width:100%;margin-top:14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:300;color:rgba(245,241,234,0.35);">jamesbrooks.com/growth-os</div>
   </div>
 
 </main>
@@ -469,11 +485,16 @@ Your current average deal value: [&euro;/&pound;/$]
 
 <script>
 function submitOptIn(sourceTag) {
+  var firstName = document.getElementById('optin-firstname').value.trim();
   var email = document.getElementById('optin-email').value.trim();
   var btn = document.getElementById('optin-btn');
   var success = document.getElementById('optin-success');
   var errEl = document.getElementById('optin-error');
 
+  if (!firstName) {
+    document.getElementById('optin-firstname').style.borderColor = 'rgba(201,168,76,0.9)';
+    return;
+  }
   if (!email || !email.includes('@') || !email.includes('.')) {
     document.getElementById('optin-email').style.borderColor = 'rgba(201,168,76,0.9)';
     return;
@@ -492,6 +513,7 @@ function submitOptIn(sourceTag) {
     }
     window.EncTracking.identify({
       email: email,
+      firstName: firstName,
       tags: 'growth library, ' + sourceTag
     });
     document.getElementById('optin-form').style.display = 'none';
@@ -502,6 +524,36 @@ function submitOptIn(sourceTag) {
     errEl.style.display = 'block';
     setTimeout(function(){ errEl.style.display = 'none'; }, 4000);
   }
+}
+</script>
+<script>
+function copyPrompt(btn) {
+  var promptBox = btn.closest('.prompt-code').querySelector('pre');
+  if (!promptBox) return;
+  var text = promptBox.innerText || promptBox.textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    // Fallback for older browsers
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
 }
 </script>
 </body>
