@@ -50,7 +50,6 @@
   .subscribe-input:focus { border-color:rgba(201,168,76,0.6); }
   .subscribe-btn { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:10px 20px; border-radius:3px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
   .subscribe-btn:hover { background:var(--gold-light); }
-  .subscribe-note { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:6px; }
 
   /* CONTENT */
   .content { max-width:var(--max-w); margin:0 auto; padding:0 24px 80px; }
@@ -157,7 +156,7 @@
   .cta-block .cta-body { font-family:'EB Garamond',serif; font-size:18px; color:rgba(245,241,234,0.75); max-width:520px; margin:0 auto 30px; line-height:1.65; position:relative; }
   .cta-btn { display:inline-block; background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; padding:15px 38px; border-radius:3px; position:relative; transition:background 0.2s, transform 0.15s; }
   .cta-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
-  .cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; position:relative; }
+  .cta-note { display:block; width:100%; text-align:center; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; }
 
   /* FOOTER */
   footer { background:var(--mid-navy); padding:26px 24px; border-top:1px solid rgba(201,168,76,0.15); }
@@ -183,6 +182,14 @@
 
   .optin-success { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--gold-light); font-weight:600; padding:11px 0; }
   .optin-error { font-family:'DM Sans',sans-serif; font-size:13px; color:#ff6b6b; font-weight:400; padding:11px 0; }
+.prompt-instruction { background: var(--pale-blue); border-left: 3px solid var(--mid-blue); padding: 14px 20px; margin-bottom: 32px; border-radius: 3px; }
+  .prompt-instruction p { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; color: var(--deep-navy); margin: 0; }
+  .copy-btn { cursor: pointer; transition: background 0.15s; }
+  .copy-btn:hover { background: var(--mid-blue) !important; }
+  .copy-btn.copied { background: #2E7D32 !important; }
+  .copy-btn.copied::after { content: ' Copied!'; }
+.optin-success { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--gold-light); font-weight:600; padding:11px 0; }
+  .optin-error { font-family:'DM Sans',sans-serif; font-size:13px; color:#ff6b6b; font-weight:400; padding:11px 0; }
 </style>
 
 <!-- Google Tag Manager -->
@@ -202,8 +209,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-os">The Growth OS</div>
-    <div class="hero-engine-label">Connection Engine</div>
+    <div class="hero-os">Attention Engine</div>
     <h1>The AI <em>Profile</em> Positioning Blueprint</h1>
     <p class="hero-sub">Rewrite your LinkedIn profile in 20 minutes so the right founders come to you, before you ever send a connection request.</p>
     <div class="promise-strip">
@@ -217,12 +223,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="subscribe-bar">
   <div class="subscribe-bar-inner">
     <div class="subscribe-bar-text">
-      <p><strong>This is 2 of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
-      <p class="subscribe-note">No spam. Unsubscribe any time.</p>
+      <p><strong>This is one of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
     </div>
     <div>
       <div class="subscribe-form" id="optin-form">
-        <input type="email" class="subscribe-input" id="optin-email" placeholder="Your email address">
+        <input type="text" class="subscribe-input" id="optin-firstname" placeholder="First name">
+        <input type="email" class="subscribe-input" id="optin-email" placeholder="Email address">
         <button class="subscribe-btn" id="optin-btn" onclick="submitOptIn('lm-02-profile-blueprint')">Send me the library</button>
       </div>
       <div class="optin-success" id="optin-success" style="display:none;">You're in. Check your inbox shortly.</div>
@@ -289,6 +295,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>What you're doing: Getting an honest, structured assessment of what your profile is currently costing you. Start here. Always audit before you edit.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> LinkedIn conversion specialist. Your only metric is whether a profile converts the right prospects into inbound connections.
 
 <strong>TASK:</strong> Audit the LinkedIn profile content I provide below. Score each section out of 10 and identify the single biggest problem in each.
@@ -332,6 +339,7 @@ First experience entry: [paste your most recent role and description]
       <p>What you're doing: Rewriting the one line that every visitor reads first. Your headline appears in search results, connection requests, comment sections and DMs. It is doing more work than any other line you write.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> B2B copywriter. LinkedIn headline conversion is your only focus.
 
 <strong>TASK:</strong> Rewrite the LinkedIn headline using the audit from Prompt 1 and the inputs below. Generate three headline options, each under 220 characters.
@@ -365,6 +373,7 @@ Tone preference: [direct / authoritative / peer-to-peer]
       <p>What you're doing: Writing the section most founders either skip or fill with career history. Done right, the About section is the highest-converting piece of copy on your entire profile.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> B2B copywriter. Your one metric is inbound connection requests from ICPs.
 
 <strong>TASK:</strong> Write a LinkedIn About section using the 5-part structure below.
@@ -406,6 +415,7 @@ CTA: [what you want them to do: connect, DM, visit link]
       <p>What you're doing: Deciding exactly what to feature and why. Most founders either leave this blank or use it as a portfolio. It should be doing active conversion work on every profile visit.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> LinkedIn conversion strategist. The Featured section is your most underused sales asset.
 
 <strong>TASK:</strong> Design a Featured section strategy using the inputs below. Recommend exactly what to include in each of the four featured slots and write a short description for each item.
@@ -481,7 +491,7 @@ Primary CTA: [what action you most want visitors to take]
     <div class="cta-subhead">Now build the system that fills it.</div>
     <p class="cta-body">The Growth OS helps founder-led B2B companies build predictable pipeline. Compete on intelligence, not headcount. AI is your multiplier. This system is your advantage.</p>
     <a href="https://jamesbrooks.com/growth-os" class="cta-btn">See the Growth OS &rarr;</a>
-    <p class="cta-note">jamesbrooks.com/growth-os</p>
+    <div style="text-align:center;width:100%;margin-top:14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:300;color:rgba(245,241,234,0.35);">jamesbrooks.com/growth-os</div>
   </div>
 
 </main>
@@ -496,11 +506,16 @@ Primary CTA: [what action you most want visitors to take]
 
 <script>
 function submitOptIn(sourceTag) {
+  var firstName = document.getElementById('optin-firstname').value.trim();
   var email = document.getElementById('optin-email').value.trim();
   var btn = document.getElementById('optin-btn');
   var success = document.getElementById('optin-success');
   var errEl = document.getElementById('optin-error');
 
+  if (!firstName) {
+    document.getElementById('optin-firstname').style.borderColor = 'rgba(201,168,76,0.9)';
+    return;
+  }
   if (!email || !email.includes('@') || !email.includes('.')) {
     document.getElementById('optin-email').style.borderColor = 'rgba(201,168,76,0.9)';
     return;
@@ -519,6 +534,7 @@ function submitOptIn(sourceTag) {
     }
     window.EncTracking.identify({
       email: email,
+      firstName: firstName,
       tags: 'growth library, ' + sourceTag
     });
     document.getElementById('optin-form').style.display = 'none';
@@ -529,6 +545,36 @@ function submitOptIn(sourceTag) {
     errEl.style.display = 'block';
     setTimeout(function(){ errEl.style.display = 'none'; }, 4000);
   }
+}
+</script>
+<script>
+function copyPrompt(btn) {
+  var promptBox = btn.closest('.prompt-code').querySelector('pre');
+  if (!promptBox) return;
+  var text = promptBox.innerText || promptBox.textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    // Fallback for older browsers
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
 }
 </script>
 </body>
