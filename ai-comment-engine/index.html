@@ -50,7 +50,6 @@
   .subscribe-input:focus { border-color:rgba(201,168,76,0.6); }
   .subscribe-btn { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:10px 20px; border-radius:3px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
   .subscribe-btn:hover { background:var(--gold-light); }
-  .subscribe-note { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:6px; }
 
   /* CONTENT */
   .content { max-width:var(--max-w); margin:0 auto; padding:0 24px 80px; }
@@ -157,7 +156,7 @@
   .cta-block .cta-body { font-family:'EB Garamond',serif; font-size:18px; color:rgba(245,241,234,0.75); max-width:520px; margin:0 auto 30px; line-height:1.65; position:relative; }
   .cta-btn { display:inline-block; background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; padding:15px 38px; border-radius:3px; position:relative; transition:background 0.2s, transform 0.15s; }
   .cta-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
-  .cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; position:relative; }
+  .cta-note { display:block; width:100%; text-align:center; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; }
 
   /* FOOTER */
   footer { background:var(--mid-navy); padding:26px 24px; border-top:1px solid rgba(201,168,76,0.15); }
@@ -183,6 +182,14 @@
 
   .optin-success { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--gold-light); font-weight:600; padding:11px 0; }
   .optin-error { font-family:'DM Sans',sans-serif; font-size:13px; color:#ff6b6b; font-weight:400; padding:11px 0; }
+.prompt-instruction { background: var(--pale-blue); border-left: 3px solid var(--mid-blue); padding: 14px 20px; margin-bottom: 32px; border-radius: 3px; }
+  .prompt-instruction p { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; color: var(--deep-navy); margin: 0; }
+  .copy-btn { cursor: pointer; transition: background 0.15s; }
+  .copy-btn:hover { background: var(--mid-blue) !important; }
+  .copy-btn.copied { background: #2E7D32 !important; }
+  .copy-btn.copied::after { content: ' Copied!'; }
+.optin-success { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--gold-light); font-weight:600; padding:11px 0; }
+  .optin-error { font-family:'DM Sans',sans-serif; font-size:13px; color:#ff6b6b; font-weight:400; padding:11px 0; }
 </style>
 
 <!-- Google Tag Manager -->
@@ -202,8 +209,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-os">The Growth OS</div>
-    <div class="hero-engine-label">Connection Engine</div>
+    <div class="hero-os">Connection Engine</div>
     <h1>The AI <em>Comment</em> Visibility Engine</h1>
     <p class="hero-sub">Generate 50+ inbound connection requests per week, without posting a single piece of content.</p>
     <div class="promise-strip">
@@ -217,12 +223,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="subscribe-bar">
   <div class="subscribe-bar-inner">
     <div class="subscribe-bar-text">
-      <p><strong>This is 3 of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
-      <p class="subscribe-note">No spam. Unsubscribe any time.</p>
+      <p><strong>This is one of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
     </div>
     <div>
       <div class="subscribe-form" id="optin-form">
-        <input type="email" class="subscribe-input" id="optin-email" placeholder="Your email address">
+        <input type="text" class="subscribe-input" id="optin-firstname" placeholder="First name">
+        <input type="email" class="subscribe-input" id="optin-email" placeholder="Email address">
         <button class="subscribe-btn" id="optin-btn" onclick="submitOptIn('lm-03-comment-engine')">Send me the library</button>
       </div>
       <div class="optin-success" id="optin-success" style="display:none;">You're in. Check your inbox shortly.</div>
@@ -300,6 +306,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>What you're doing: Building a weekly target list of posts to engage with. Commenting on the wrong posts is wasted time. This prompt ensures every comment reaches your ICP directly.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> LinkedIn strategist. Your focus is ICP engagement and connection building, not content performance.
 
 <strong>TASK:</strong> Generate a weekly commenting target list using the inputs below.
@@ -335,6 +342,7 @@ Current date / season: [month and any relevant business context, e.g. end of qua
       <p>What you're doing: Writing comments that start conversations rather than perform for an audience. The goal is a reply from the author, not likes from their followers.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> B2B relationship builder. Your one metric is comment-to-reply rate.
 
 <strong>TASK:</strong> Write three comment options for the post below using these three frameworks:
@@ -372,6 +380,7 @@ Your core expertise: [what you help with, one sentence]
       <p>What you're doing: Converting a warm interaction into a connected relationship. When an author replies to your comment, the window for a connection request is open. This prompt closes it cleanly.</p>
     </div>
     <div class="prompt-code">
+    <button class="copy-prompt-btn" onclick="copyPrompt(this)">Copy prompt</button>
       <pre><strong>ROLE:</strong> B2B copywriter. Your one metric is connection request acceptance rate.
 
 <strong>TASK:</strong> Write a LinkedIn connection request message using the context below. Under 200 characters. No pitch.
@@ -443,7 +452,7 @@ One thing you have in common or find genuinely interesting: [shared context, ind
     <div class="cta-subhead">A system gets you hired.</div>
     <p class="cta-body">The Growth OS helps founder-led B2B companies build predictable pipeline. Compete on intelligence, not headcount. AI is your multiplier. This system is your advantage.</p>
     <a href="https://jamesbrooks.com/growth-os" class="cta-btn">See the Growth OS &rarr;</a>
-    <p class="cta-note">jamesbrooks.com/growth-os</p>
+    <div style="text-align:center;width:100%;margin-top:14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:300;color:rgba(245,241,234,0.35);">jamesbrooks.com/growth-os</div>
   </div>
 
 </main>
@@ -458,11 +467,16 @@ One thing you have in common or find genuinely interesting: [shared context, ind
 
 <script>
 function submitOptIn(sourceTag) {
+  var firstName = document.getElementById('optin-firstname').value.trim();
   var email = document.getElementById('optin-email').value.trim();
   var btn = document.getElementById('optin-btn');
   var success = document.getElementById('optin-success');
   var errEl = document.getElementById('optin-error');
 
+  if (!firstName) {
+    document.getElementById('optin-firstname').style.borderColor = 'rgba(201,168,76,0.9)';
+    return;
+  }
   if (!email || !email.includes('@') || !email.includes('.')) {
     document.getElementById('optin-email').style.borderColor = 'rgba(201,168,76,0.9)';
     return;
@@ -481,6 +495,7 @@ function submitOptIn(sourceTag) {
     }
     window.EncTracking.identify({
       email: email,
+      firstName: firstName,
       tags: 'growth library, ' + sourceTag
     });
     document.getElementById('optin-form').style.display = 'none';
@@ -491,6 +506,36 @@ function submitOptIn(sourceTag) {
     errEl.style.display = 'block';
     setTimeout(function(){ errEl.style.display = 'none'; }, 4000);
   }
+}
+</script>
+<script>
+function copyPrompt(btn) {
+  var promptBox = btn.closest('.prompt-code').querySelector('pre');
+  if (!promptBox) return;
+  var text = promptBox.innerText || promptBox.textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    // Fallback for older browsers
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
 }
 </script>
 </body>
