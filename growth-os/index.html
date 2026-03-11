@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 html { scroll-behavior: smooth; }
 body { background: var(--navy); color: var(--off-white); font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; }
 
-/* ── NAV ── */
+/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: rgba(8,22,40,0.96); backdrop-filter: blur(10px);
@@ -44,13 +44,10 @@ nav {
 }
 .nav-logo { font-family:'EB Garamond',serif; font-size:18px; font-weight:500; color:var(--off-white); letter-spacing:0.04em; text-decoration:none; }
 .nav-logo span { color: var(--gold); }
-.nav-links { display:flex; align-items:center; gap:32px; }
-.nav-link { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; letter-spacing:0.06em; color:rgba(245,241,234,0.55); text-decoration:none; text-transform:uppercase; transition:color 0.2s; }
-.nav-link:hover { color:var(--gold); }
-.nav-cta { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; padding:10px 22px; border-radius:2px; transition:background 0.2s; }
+.nav-cta { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; padding:10px 22px; border-radius:2px; border:none; cursor:pointer; transition:background 0.2s; }
 .nav-cta:hover { background:var(--gold-light); }
 
-/* ── HERO ── */
+/* HERO */
 .hero {
   min-height: 100vh; display: flex; align-items: center;
   padding: 120px 40px 80px; position: relative; overflow: hidden;
@@ -110,16 +107,11 @@ nav {
   margin-bottom:18px; position:relative; transition: background 0.2s, transform 0.2s;
 }
 .vsl-placeholder:hover .vsl-play { background:rgba(201,168,76,0.2); transform: scale(1.05); }
-.vsl-play::after { content:'▶'; font-size:20px; color:var(--gold); margin-left:4px; }
+.vsl-play::after { content:'&#9654;'; font-size:20px; color:var(--gold); margin-left:4px; }
 .vsl-label { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,241,234,0.25); }
 .vsl-duration { font-family:'DM Sans',sans-serif; font-size:11px; color:rgba(245,241,234,0.15); margin-top:6px; letter-spacing:0.06em; }
 
-/* ── TRUST BRIDGE ── */
-.trust {
-  background: var(--warm-white); padding: 100px 40px;
-  text-align: center;
-}
-.trust-inner { max-width: 680px; margin: 0 auto; }
+/* SECTION EYEBROW SHARED */
 .section-eyebrow {
   display:inline-flex; align-items:center; gap:12px;
   font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.22em;
@@ -127,6 +119,10 @@ nav {
 }
 .section-eyebrow::before { content:''; width:20px; height:1px; background:var(--gold); opacity:0.5; }
 .section-eyebrow::after  { content:''; width:20px; height:1px; background:var(--gold); opacity:0.5; }
+
+/* TRUST BRIDGE */
+.trust { background: var(--warm-white); padding: 100px 40px; text-align: center; }
+.trust-inner { max-width: 680px; margin: 0 auto; }
 .trust h2 {
   font-family:'Playfair Display',serif; font-weight:700;
   font-size:clamp(26px,3.5vw,40px); line-height:1.12;
@@ -136,15 +132,19 @@ nav {
 .trust-body { font-family:'EB Garamond',serif; font-size:19px; color:var(--text-body); line-height:1.8; text-align:left; }
 .trust-body p { margin-bottom:22px; }
 .trust-body p:last-child { margin-bottom:0; }
-.trust-signature {
-  margin-top: 40px; padding-top: 32px;
-  border-top: 1px solid rgba(11,31,58,0.1);
-  font-family:'EB Garamond',serif; font-style:italic; font-size:16px;
-  color:var(--text-muted); text-align:center;
+.trust-cta { margin-top:40px; padding-top:32px; border-top:1px solid rgba(11,31,58,0.1); text-align:center; }
+.btn-trust {
+  display:inline-flex; align-items:center; justify-content:center;
+  background:var(--navy); color:var(--off-white);
+  font-family:'DM Sans',sans-serif; font-weight:600; font-size:13px;
+  letter-spacing:0.1em; text-transform:uppercase;
+  padding:14px 32px; border-radius:2px; border:none; cursor:pointer;
+  margin-bottom:10px; transition:background 0.2s;
 }
-.trust-signature strong { font-style:normal; color:var(--text-body); font-weight:500; }
+.btn-trust:hover { background:var(--mid-navy); }
+.trust-cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); letter-spacing:0.04em; }
 
-/* ── PROBLEMS ── */
+/* PROBLEMS */
 .problems { background: var(--navy); padding: 100px 40px; }
 .problems-inner { max-width: var(--max-w); margin: 0 auto; }
 .problems-header { text-align:center; margin-bottom:64px; }
@@ -183,7 +183,7 @@ nav {
   border-top:1px solid rgba(201,168,76,0.15); line-height:1.55;
 }
 
-/* ── THE OS ── */
+/* THE OS */
 .os { background:var(--warm-white); padding:100px 40px; }
 .os-inner { max-width:var(--max-w); margin:0 auto; }
 .os-header { text-align:center; margin-bottom:64px; }
@@ -217,7 +217,98 @@ nav {
 }
 .os-note strong { color:var(--gold-light); font-weight:500; }
 
-/* ── FIT ── */
+/* WHY THIS COHORT IS DIFFERENT */
+.cohort { background:var(--navy); padding:100px 40px; }
+.cohort-inner { max-width:var(--max-w); margin:0 auto; }
+.cohort-header { text-align:center; margin-bottom:64px; }
+.cohort-header h2 {
+  font-family:'Playfair Display',serif; font-weight:700;
+  font-size:clamp(26px,3.5vw,40px); line-height:1.12;
+  color:var(--off-white); letter-spacing:-0.01em; margin-bottom:16px;
+}
+.cohort-header h2 em { font-style:italic; color:var(--gold-light); }
+.cohort-header p { font-family:'EB Garamond',serif; font-size:19px; color:rgba(245,241,234,0.5); max-width:540px; margin:0 auto; line-height:1.65; }
+
+.cohort-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-bottom:2px; }
+.cohort-card {
+  background:rgba(255,255,255,0.04); padding:40px 36px;
+  border-top:2px solid rgba(201,168,76,0.15);
+  transition: background 0.2s, border-top-color 0.2s;
+}
+.cohort-card:hover { background:rgba(255,255,255,0.07); border-top-color:var(--gold); }
+.cohort-card-num {
+  font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--gold-muted); margin-bottom:14px;
+}
+.cohort-card h4 {
+  font-family:'Playfair Display',serif; font-size:19px; font-weight:700;
+  color:var(--off-white); margin-bottom:12px; line-height:1.2;
+}
+.cohort-card h4 em { font-style:italic; color:var(--gold-light); }
+.cohort-card p {
+  font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300;
+  color:rgba(245,241,234,0.55); line-height:1.65;
+}
+
+.cohort-terms {
+  background:rgba(255,255,255,0.03); border-top:2px solid rgba(201,168,76,0.2);
+  padding:40px 48px; display:grid; grid-template-columns:repeat(4,1fr); gap:32px;
+  text-align:center;
+}
+.cohort-term-label {
+  font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600;
+  letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-muted);
+  margin-bottom:8px;
+}
+.cohort-term-value {
+  font-family:'Playfair Display',serif; font-size:20px; font-weight:700;
+  color:var(--off-white); line-height:1.2;
+}
+.cohort-term-value em { font-style:italic; color:var(--gold-light); }
+.cohort-term-note {
+  font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300;
+  color:rgba(245,241,234,0.3); margin-top:4px; line-height:1.4;
+}
+
+/* HOW IT WORKS */
+.process { background:var(--warm-white); padding:100px 40px; }
+.process-inner { max-width:var(--max-w); margin:0 auto; }
+.process-header { text-align:center; margin-bottom:64px; }
+.process-header h2 {
+  font-family:'Playfair Display',serif; font-weight:700;
+  font-size:clamp(26px,3.5vw,40px); line-height:1.12;
+  color:var(--navy); letter-spacing:-0.01em; margin-bottom:16px;
+}
+.process-header h2 em { font-style:italic; color:var(--gold-muted); }
+.process-header p { font-family:'EB Garamond',serif; font-size:19px; color:var(--text-muted); max-width:500px; margin:0 auto; line-height:1.65; }
+
+.process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+.step {
+  background:rgba(11,31,58,0.05); padding:36px 28px;
+  border-top:2px solid rgba(11,31,58,0.12);
+  transition: background 0.2s, border-top-color 0.2s;
+}
+.step:hover { background:rgba(11,31,58,0.09); border-top-color:var(--navy); }
+.step-num {
+  font-family:'Playfair Display',serif; font-size:48px; font-weight:700;
+  color:rgba(11,31,58,0.08); line-height:1; margin-bottom:16px;
+}
+.step h4 {
+  font-family:'Playfair Display',serif; font-size:17px; font-weight:700;
+  color:var(--navy); margin-bottom:10px; line-height:1.2;
+}
+.step h4 em { font-style:italic; color:var(--gold-muted); }
+.step p {
+  font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300;
+  color:var(--text-muted); line-height:1.65;
+}
+.step-detail {
+  font-family:'EB Garamond',serif; font-style:italic; font-size:14px;
+  color:var(--gold-muted); margin-top:14px; padding-top:14px;
+  border-top:1px solid rgba(11,31,58,0.08);
+}
+
+/* FIT */
 .fit { background:var(--navy); padding:100px 40px; }
 .fit-inner { max-width:var(--max-w); margin:0 auto; }
 .fit-header { text-align:center; margin-bottom:56px; }
@@ -247,53 +338,102 @@ nav {
 .fit-col.yes .fit-check { color:var(--gold); }
 .fit-col.no  .fit-check { color:rgba(245,241,234,0.2); }
 
-/* ── AUDIT ── */
-.audit { background:var(--warm-white); padding:100px 40px; position:relative; overflow:hidden; }
-.audit::before {
+/* SPOTS CTA */
+.spots { background:var(--warm-white); padding:100px 40px; position:relative; overflow:hidden; }
+.spots::before {
   content:''; position:absolute; inset:0;
   background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,168,76,0.04) 0%, transparent 60%);
 }
-.audit-inner { max-width:var(--max-w); margin:0 auto; position:relative; }
-.audit-header { text-align:center; margin-bottom:56px; }
-.audit-header h2 {
+.spots-inner { max-width:680px; margin:0 auto; position:relative; text-align:center; }
+.spots-pill {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25);
+  border-radius:20px; padding:6px 18px; margin-bottom:32px;
+}
+.spots-pill-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+.spots-pill-text {
+  font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600;
+  letter-spacing:0.14em; text-transform:uppercase; color:var(--gold);
+}
+.spots h2 {
   font-family:'Playfair Display',serif; font-weight:700;
   font-size:clamp(26px,3.5vw,40px); line-height:1.12;
   color:var(--navy); letter-spacing:-0.01em; margin-bottom:16px;
 }
-.audit-header h2 em { font-style:italic; color:var(--gold-muted); }
-.audit-header p { font-family:'EB Garamond',serif; font-size:19px; color:var(--text-muted); max-width:520px; margin:0 auto; line-height:1.65; }
+.spots h2 em { font-style:italic; color:var(--gold-muted); }
+.spots-body {
+  font-family:'EB Garamond',serif; font-size:19px; color:var(--text-muted);
+  line-height:1.75; margin:0 auto 40px; max-width:520px;
+}
+.spots-facts {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+  margin-bottom:40px;
+}
+.spots-fact {
+  background:rgba(11,31,58,0.05); padding:24px 20px;
+  border-top:2px solid rgba(11,31,58,0.1);
+}
+.spots-fact-val {
+  font-family:'Playfair Display',serif; font-size:22px; font-weight:700;
+  color:var(--navy); line-height:1; margin-bottom:6px;
+}
+.spots-fact-val em { font-style:italic; color:var(--gold-muted); }
+.spots-fact-label {
+  font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300;
+  color:var(--text-muted); letter-spacing:0.04em;
+}
+.spots-cta-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; }
 
-.audit-block {
-  background:white; border:1px solid rgba(11,31,58,0.1);
-  border-top:2px solid var(--navy); padding:52px 52px;
-  display:grid; grid-template-columns:1fr auto; gap:48px; align-items:center;
-}
-.audit-block-left h3 {
-  font-family:'Playfair Display',serif; font-size:24px; font-weight:700;
-  color:var(--navy); margin-bottom:14px; line-height:1.2;
-}
-.audit-block-left h3 em { font-style:italic; color:var(--gold-muted); }
-.audit-block-left p {
-  font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300;
-  color:var(--text-muted); line-height:1.7; max-width:480px;
-}
-.audit-block-left p strong { color:var(--navy); font-weight:600; }
-.audit-btns { display:flex; flex-direction:column; gap:12px; align-items:stretch; }
-
-/* Trust CTA */
-.trust-cta { margin-top:40px; padding-top:32px; border-top:1px solid rgba(11,31,58,0.1); text-align:center; }
-.btn-trust {
-  display:inline-flex; align-items:center; justify-content:center;
-  background:var(--navy); color:var(--off-white);
+/* BUTTONS */
+.btn-gold {
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  background:var(--gold); color:var(--navy);
   font-family:'DM Sans',sans-serif; font-weight:600; font-size:13px;
-  letter-spacing:0.1em; text-transform:uppercase;
-  padding:14px 32px; border-radius:2px; border:none; cursor:pointer;
-  margin-bottom:10px; transition:background 0.2s;
+  letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;
+  padding:16px 36px; border-radius:2px; white-space:nowrap;
+  border:none; cursor:pointer; transition:background 0.2s;
 }
-.btn-trust:hover { background:var(--mid-navy); }
-.trust-cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); letter-spacing:0.04em; }
+.btn-gold:hover { background:var(--gold-light); }
+.btn-ghost {
+  display:inline-flex; align-items:center; justify-content:center;
+  background:transparent; color:var(--text-muted);
+  font-family:'DM Sans',sans-serif; font-weight:300; font-size:12px;
+  letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;
+  padding:12px 24px; border:1px solid rgba(11,31,58,0.15); border-radius:2px;
+  white-space:nowrap; transition:all 0.2s;
+}
+.btn-ghost:hover { color:var(--navy); border-color:rgba(11,31,58,0.3); }
 
-/* ── MODAL ── */
+/* QUAL CLOSE */
+.qual { background:var(--navy); padding:80px 40px; text-align:center; }
+.qual-inner { max-width:600px; margin:0 auto; }
+.qual h2 {
+  font-family:'Playfair Display',serif; font-weight:700;
+  font-size:clamp(22px,2.8vw,32px); color:var(--off-white);
+  margin-bottom:24px; line-height:1.2;
+}
+.qual h2 em { font-style:italic; color:var(--gold-light); }
+.qual-body {
+  font-family:'EB Garamond',serif; font-size:18px;
+  color:rgba(245,241,234,0.5); line-height:1.8; margin-bottom:32px;
+}
+.qual-divider { width:32px; height:1px; background:var(--gold); opacity:0.3; margin:0 auto 32px; }
+.qual-final {
+  font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300;
+  color:rgba(245,241,234,0.25); line-height:1.8; font-style:italic;
+}
+
+/* FOOTER */
+footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rgba(201,168,76,0.08); }
+.footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+.footer-brand { font-family:'EB Garamond',serif; font-size:16px; color:rgba(245,241,234,0.35); }
+.footer-brand span { color:var(--gold); }
+.footer-links { display:flex; gap:24px; }
+.footer-link { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; letter-spacing:0.06em; text-transform:uppercase; color:rgba(245,241,234,0.2); text-decoration:none; transition:color 0.2s; }
+.footer-link:hover { color:var(--gold); }
+
+/* MODAL */
 .modal-overlay {
   display:none; position:fixed; inset:0; z-index:1000;
   background:rgba(8,22,40,0.85); backdrop-filter:blur(6px);
@@ -315,69 +455,29 @@ nav {
 .modal-header-text p { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; color:var(--text-muted); }
 .modal-close {
   background:none; border:none; cursor:pointer; font-size:20px;
-  color:var(--text-muted); padding:4px; flex-shrink:0; line-height:1;
-  transition:color 0.2s;
+  color:var(--text-muted); padding:4px; flex-shrink:0; line-height:1; transition:color 0.2s;
 }
 .modal-close:hover { color:var(--navy); }
 .modal-body { padding:0; }
 .modal-body iframe { display:block; min-height:580px; }
-.btn-gold {
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  background:var(--gold); color:var(--navy);
-  font-family:'DM Sans',sans-serif; font-weight:600; font-size:13px;
-  letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;
-  padding:16px 36px; border-radius:2px; white-space:nowrap; transition:background 0.2s;
-}
-.btn-gold:hover { background:var(--gold-light); }
-.btn-ghost {
-  display:inline-flex; align-items:center; justify-content:center;
-  background:transparent; color:rgba(245,241,234,0.4);
-  font-family:'DM Sans',sans-serif; font-weight:300; font-size:12px;
-  letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;
-  padding:12px 24px; border:1px solid rgba(245,241,234,0.1); border-radius:2px;
-  white-space:nowrap; transition:all 0.2s;
-}
-.btn-ghost:hover { color:rgba(245,241,234,0.7); border-color:rgba(245,241,234,0.25); }
 
-/* ── QUAL CLOSE ── */
-.qual { background:var(--navy); padding:80px 40px; text-align:center; }
-.qual-inner { max-width:600px; margin:0 auto; }
-.qual h2 {
-  font-family:'Playfair Display',serif; font-weight:700;
-  font-size:clamp(22px,2.8vw,32px); color:var(--off-white);
-  margin-bottom:24px; line-height:1.2;
-}
-.qual h2 em { font-style:italic; color:var(--gold-light); }
-.qual-body {
-  font-family:'EB Garamond',serif; font-size:18px;
-  color:rgba(245,241,234,0.5); line-height:1.8; margin-bottom:32px;
-}
-.qual-divider { width:32px; height:1px; background:var(--gold); opacity:0.3; margin:0 auto 32px; }
-.qual-final {
-  font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300;
-  color:rgba(245,241,234,0.25); line-height:1.8; font-style:italic;
-}
-
-/* ── FOOTER ── */
-footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rgba(201,168,76,0.08); }
-.footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-.footer-brand { font-family:'EB Garamond',serif; font-size:16px; color:rgba(245,241,234,0.35); }
-.footer-brand span { color:var(--gold); }
-.footer-links { display:flex; gap:24px; }
-.footer-link { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; letter-spacing:0.06em; text-transform:uppercase; color:rgba(245,241,234,0.2); text-decoration:none; transition:color 0.2s; }
-.footer-link:hover { color:var(--gold); }
-
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media (max-width: 900px) {
   nav { padding:0 20px; }
-  .nav-links { gap:16px; }
-  .hero, .trust, .problems, .os, .fit, .audit, .qual { padding:70px 24px; }
+  .hero, .trust, .problems, .os, .cohort, .process, .fit, .spots, .qual { padding:70px 24px; }
   .problem-cards { grid-template-columns:1fr; }
   .engines { grid-template-columns:1fr 1fr; }
+  .cohort-grid { grid-template-columns:1fr; }
+  .cohort-terms { grid-template-columns:1fr 1fr; gap:24px; padding:32px 24px; }
+  .process-steps { grid-template-columns:1fr 1fr; }
   .fit-cols { grid-template-columns:1fr; }
-  .audit-block { grid-template-columns:1fr; gap:28px; padding:36px 28px; }
-  .audit-btns { flex-direction:row; flex-wrap:wrap; }
+  .spots-facts { grid-template-columns:1fr; }
   footer { padding:24px; }
+}
+@media (max-width: 600px) {
+  .engines { grid-template-columns:1fr; }
+  .process-steps { grid-template-columns:1fr; }
+  .cohort-terms { grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -388,18 +488,16 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">James <span>Brooks</span></a>
-  <div class="nav-links">
-    <button onclick="openBooking()" class="nav-cta">Book a Discovery Call</button>
-  </div>
+  <button onclick="openBooking()" class="nav-cta">Apply for a Spot</button>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">The Growth OS</div>
-    <h1>The last growth system<br>you will <em>ever build.</em></h1>
-    <p class="hero-sub">A founder-led growth system for B2B companies doing €1M–€10M. Built once, owned by you, running without you in the room.</p>
+    <div class="hero-eyebrow">The Growth OS &mdash; Founding Cohort</div>
+    <h1>The last growth system<br>you will <em>ever need.</em></h1>
+    <p class="hero-sub">A founder-led growth system for B2B companies doing &euro;1M&ndash;&euro;10M. Built once, owned by you, running without you in the room. Seven spots. No repeat.</p>
     <div class="vsl-wrap">
       <div class="vsl-placeholder">
         <div class="vsl-play"></div>
@@ -416,14 +514,14 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
     <div class="section-eyebrow">Before We Get Into The Model</div>
     <h2>You have already<br>tried <em>things.</em></h2>
     <div class="trust-body">
-      <p>I started my career as an investment analyst, working across Dublin, New York, and Melbourne. Pattern recognition was the job. You learned to spot structural shifts early, the ones that quietly separated the businesses pulling ahead from the ones falling behind. I moved back to Ireland in 2012 to build a business and raise a family here, and I brought that lens with me. What followed was not just observation. Each wave reshaped how I ran my own consulting business. Outsourcing first, then automation, and now AI. I did not watch from the outside and take notes. I rebuilt around each one as it arrived. That is where the Growth OS came from. Not theory. Fourteen years of running a founder-led business through every structural shift and figuring out what actually compounds.</p>
+      <p>I started my career as an investment analyst, working across Dublin, New York, and Melbourne. Pattern recognition was the job. You learned to spot structural shifts early, the ones that quietly separated the businesses pulling ahead from the ones falling behind. I moved back to Ireland in 2012 to build a business and raise a family here, and I brought that lens with me.</p>
+      <p>What followed was not just observation. Each wave reshaped how I ran my own consulting business. Outsourcing first, then automation, and now AI. I did not watch from the outside and take notes. I rebuilt around each one as it arrived. That is where the Growth OS came from. Not theory. Fourteen years of running a founder-led business through every structural shift and figuring out what actually compounds.</p>
       <p>Most of the founders I speak to have already done a lot right. They have built relationships, delivered real results, and grown through reputation and referrals. And at some point, they have tried to make growth more systematic — agencies, outbound tools, LinkedIn, automation. Some of it worked. Some did not.</p>
-      <p>But the real frustration is never effort. It is uncertainty. Not knowing exactly where next quarter's conversations are coming from. That uncertainty makes it harder to hire confidently, invest confidently, or scale confidently.</p>
-      <p>The issue is not effort. It is structure. And structure is exactly what the Growth OS installs.</p>
+      <p>But the real frustration is never effort. It is uncertainty. Not knowing exactly where next quarter's conversations are coming from. That uncertainty makes it harder to hire confidently, invest confidently, or scale confidently. The issue is not effort. It is structure. And structure is exactly what the Growth OS installs.</p>
     </div>
     <div class="trust-cta">
-      <button onclick="openBooking()" class="btn-trust">Book a Discovery Call</button>
-      <p class="trust-cta-note">Free 20-minute call to check fit. No commitment required.</p>
+      <button onclick="openBooking()" class="btn-trust">Apply for a Spot</button>
+      <p class="trust-cta-note">Free 20-minute fit call. Seven spots. No commitment required.</p>
     </div>
   </div>
 </section>
@@ -448,7 +546,7 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
           <li class="pc-job">Authority and magnet engine</li>
           <li class="pc-job">Signal-triggered activation</li>
         </ul>
-        <div class="pc-measure">A consistent, growing pipeline of qualified conversations — not peaks and troughs.</div>
+        <div class="pc-measure">A consistent, growing pipeline of qualified conversations. Not peaks and troughs.</div>
       </div>
 
       <div class="pc">
@@ -461,7 +559,7 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
           <li class="pc-job">Weighted intent scoring</li>
           <li class="pc-job">Early buyer alerts</li>
         </ul>
-        <div class="pc-measure">First-party buyer intent — you see who is warming up before anyone else does.</div>
+        <div class="pc-measure">First-party buyer intent. You see who is warming up before anyone else does.</div>
       </div>
 
       <div class="pc">
@@ -474,7 +572,7 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
           <li class="pc-job">Authority content engine</li>
           <li class="pc-job">Central growth dashboard</li>
         </ul>
-        <div class="pc-measure">Founder authority that compounds weekly — infrastructure, not effort.</div>
+        <div class="pc-measure">Founder authority that compounds weekly. Infrastructure, not effort.</div>
       </div>
 
     </div>
@@ -512,12 +610,104 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
       </div>
     </div>
     <div class="os-note">
-      <p>The Growth OS is not a course, an agency, or a stack of tools. It is <strong>installed infrastructure</strong> — owned by you, operated by your team, compounding long after the build is done.</p>
+      <p>The Growth OS is not a course, an agency, or a stack of tools. It is <strong>installed infrastructure</strong> &mdash; owned by you, operated by your team, compounding long after the build is done.</p>
     </div>
   </div>
 </section>
 
-<!-- WHO THIS IS FOR -->
+<!-- WHY THIS COHORT IS DIFFERENT -->
+<section class="cohort">
+  <div class="cohort-inner">
+    <div class="cohort-header">
+      <div class="section-eyebrow">Why This Cohort Is Different</div>
+      <h2>We build it <em>inside</em><br>your business.</h2>
+      <p>This is not a consultancy engagement and it is not a course. We install the infrastructure directly — and when we leave, you own everything.</p>
+    </div>
+    <div class="cohort-grid">
+      <div class="cohort-card">
+        <div class="cohort-card-num">01</div>
+        <h4>You own <em>everything</em> we build.</h4>
+        <p>Every workflow, prompt, system, and dashboard lives inside your business from day one. There is no platform dependency, no monthly licence, no lock-in. If we stopped working together tomorrow, the system keeps running.</p>
+      </div>
+      <div class="cohort-card">
+        <div class="cohort-card-num">02</div>
+        <h4>Your team learns to <em>run it.</em></h4>
+        <p>We do not hand you a set of instructions and disappear. We build alongside your team, transfer the knowledge as we go, and leave you with people who can operate and extend the system independently.</p>
+      </div>
+      <div class="cohort-card">
+        <div class="cohort-card-num">03</div>
+        <h4>The audit credit is <em>real.</em></h4>
+        <p>The Growth Architecture Audit (&euro;2,500) is the starting point. That fee comes off your first quarter if you proceed. It is not a sales call disguised as a diagnostic — it is a working session that produces a plan you can act on immediately, with or without us.</p>
+      </div>
+      <div class="cohort-card">
+        <div class="cohort-card-num">04</div>
+        <h4>This model does <em>not repeat.</em></h4>
+        <p>After this cohort closes, the Growth OS moves to a fully managed service. The founder-alongside-you build model is a one-time offer. Seven companies will get this. The rest will get a different version of what we build here.</p>
+      </div>
+    </div>
+    <div class="cohort-terms">
+      <div class="cohort-term-item">
+        <div class="cohort-term-label">Entry Point</div>
+        <div class="cohort-term-value">&euro;2,500</div>
+        <div class="cohort-term-note">Growth Architecture Audit, credited against Q1</div>
+      </div>
+      <div class="cohort-term-item">
+        <div class="cohort-term-label">Monthly Retainer</div>
+        <div class="cohort-term-value">&euro;5,000<em>/mo</em></div>
+        <div class="cohort-term-note">Rolling 90-day, no long-term lock-in</div>
+      </div>
+      <div class="cohort-term-item">
+        <div class="cohort-term-label">Build Period</div>
+        <div class="cohort-term-value">12 <em>Months</em></div>
+        <div class="cohort-term-note">Full system build and knowledge transfer</div>
+      </div>
+      <div class="cohort-term-item">
+        <div class="cohort-term-label">Spots Available</div>
+        <div class="cohort-term-value">7 <em>Only</em></div>
+        <div class="cohort-term-note">Founding cohort — this model does not repeat</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process">
+  <div class="process-inner">
+    <div class="process-header">
+      <div class="section-eyebrow">How It Works</div>
+      <h2>Four steps.<br>One <em>clear path.</em></h2>
+      <p>No lengthy onboarding. No ambiguity about what happens next. Here is exactly how this works.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Apply for a <em>spot</em></h4>
+        <p>Fill in a short application so we understand your business, your revenue, and your current pipeline situation. Takes five minutes.</p>
+        <div class="step-detail">We review every application personally.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Fit <em>call</em></h4>
+        <p>A free 20-minute call to establish whether this is the right engagement for you right now. No pitch, no pressure — just an honest conversation about fit.</p>
+        <div class="step-detail">If it is not the right time, we will say so.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Growth Architecture <em>Audit</em></h4>
+        <p>A half-day working session. We map your current pipeline, identify where the system is leaking, and build a phased roadmap. &euro;2,500, credited in full if you proceed.</p>
+        <div class="step-detail">You leave with a plan you can act on immediately.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Build the <em>system</em></h4>
+        <p>We install the Growth OS inside your business over 12 months. Four engines, built in sequence, with your team running each component as we go.</p>
+        <div class="step-detail">&euro;5,000/month. Rolling 90-day retainer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT CHECK -->
 <section class="fit">
   <div class="fit-inner">
     <div class="fit-header">
@@ -528,54 +718,62 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
     <div class="fit-cols">
       <div class="fit-col yes">
         <div class="fit-col-label">This is for you if</div>
-        <div class="fit-item"><span class="fit-check">✓</span> You run a B2B firm between €1M and €10M</div>
-        <div class="fit-item"><span class="fit-check">✓</span> Pipeline is inconsistent and you want to change that permanently</div>
-        <div class="fit-item"><span class="fit-check">✓</span> You rely on referrals and know that is a fragile foundation</div>
-        <div class="fit-item"><span class="fit-check">✓</span> You or a team member can commit to running the system</div>
-        <div class="fit-item"><span class="fit-check">✓</span> You want to own your growth data and intelligence long-term</div>
-        <div class="fit-item"><span class="fit-check">✓</span> You are ready to invest in infrastructure rather than another tactic</div>
+        <div class="fit-item"><span class="fit-check">&#10003;</span> You run a B2B firm between &euro;1M and &euro;10M</div>
+        <div class="fit-item"><span class="fit-check">&#10003;</span> Pipeline is inconsistent and you want to change that permanently</div>
+        <div class="fit-item"><span class="fit-check">&#10003;</span> You rely on referrals and know that is a fragile foundation</div>
+        <div class="fit-item"><span class="fit-check">&#10003;</span> You or a team member can commit to running the system</div>
+        <div class="fit-item"><span class="fit-check">&#10003;</span> You want to own your growth data and intelligence long-term</div>
+        <div class="fit-item"><span class="fit-check">&#10003;</span> You are ready to invest in infrastructure rather than another tactic</div>
       </div>
       <div class="fit-col no">
         <div class="fit-col-label">This is not for you if</div>
-        <div class="fit-item"><span class="fit-check">–</span> You need results in the next 30 days</div>
-        <div class="fit-item"><span class="fit-check">–</span> You want to hand everything to an agency and step back</div>
-        <div class="fit-item"><span class="fit-check">–</span> You are pre-revenue or still finding product-market fit</div>
-        <div class="fit-item"><span class="fit-check">–</span> You are not willing to be visible as a founder on LinkedIn</div>
-        <div class="fit-item"><span class="fit-check">–</span> You are looking for a short-term campaign or lead burst</div>
-        <div class="fit-item"><span class="fit-check">–</span> You are not ready to commit to a structured operating cadence</div>
+        <div class="fit-item"><span class="fit-check">&ndash;</span> You need results in the next 30 days</div>
+        <div class="fit-item"><span class="fit-check">&ndash;</span> You want to hand everything to an agency and step back</div>
+        <div class="fit-item"><span class="fit-check">&ndash;</span> You are pre-revenue or still finding product-market fit</div>
+        <div class="fit-item"><span class="fit-check">&ndash;</span> You are not willing to be visible as a founder on LinkedIn</div>
+        <div class="fit-item"><span class="fit-check">&ndash;</span> You are looking for a short-term campaign or lead burst</div>
+        <div class="fit-item"><span class="fit-check">&ndash;</span> You are not ready to commit to a structured operating cadence</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AUDIT CTA -->
-<section class="audit" id="audit">
-  <div class="audit-inner">
-    <div class="audit-header">
-      <div class="section-eyebrow">The Entry Point</div>
-      <h2>Start with a<br><em>Growth Architecture Audit.</em></h2>
-      <p>A half-day diagnostic session that tells you exactly where your pipeline is leaking and what to build first. Available on-site in Ireland or remotely.</p>
+<!-- SPOTS CTA -->
+<section class="spots">
+  <div class="spots-inner">
+    <div class="spots-pill">
+      <div class="spots-pill-dot"></div>
+      <div class="spots-pill-text">Founding cohort &mdash; 7 spots only</div>
     </div>
-    <div class="audit-block">
-      <div class="audit-block-left">
-        <h3>What the <em>Audit</em> covers</h3>
-        <p>We work through your connection, attention, signals, and pipeline — identifying exactly where the business is leaking and where the biggest leverage sits. You leave with a clear Growth Plan and a phased roadmap you can act on immediately.</p>
-        <p style="margin-top:16px;"><strong>Investment: from €3,500.</strong> The audit fee is credited in full against any engagement that follows. From there, you choose your path — do it yourself, done with you, or done for you.</p>
+    <h2>Seven spots.<br>One cohort. <em>No repeat.</em></h2>
+    <p class="spots-body">After this cohort closes, the Growth OS moves to a fully managed service model. The opportunity to have the system built alongside you — at this price point, at this level of access — does not come back.</p>
+    <div class="spots-facts">
+      <div class="spots-fact">
+        <div class="spots-fact-val">7 <em>spots</em></div>
+        <div class="spots-fact-label">Founding cohort, closes when full</div>
       </div>
-      <div class="audit-btns">
-        <button onclick="openBooking()" class="btn-gold">Book a Discovery Call →</button>
-        <a href="/growth-library" class="btn-ghost">Start with free resources</a>
+      <div class="spots-fact">
+        <div class="spots-fact-val">12 <em>months</em></div>
+        <div class="spots-fact-label">Full system build and knowledge transfer</div>
       </div>
+      <div class="spots-fact">
+        <div class="spots-fact-val">&euro;5k<em>/mo</em></div>
+        <div class="spots-fact-label">Rolling 90-day, no lock-in</div>
+      </div>
+    </div>
+    <div class="spots-cta-wrap">
+      <button onclick="openBooking()" class="btn-gold">Apply for a Spot &rarr;</button>
+      <a href="/growth-library" class="btn-ghost">Start with free resources</a>
     </div>
   </div>
 </section>
 
-<!-- QUALIFICATION CLOSE -->
+<!-- QUAL CLOSE -->
 <section class="qual">
   <div class="qual-inner">
-    <div class="section-eyebrow">Before You Book</div>
+    <div class="section-eyebrow" style="justify-content:center;">Before You Apply</div>
     <h2>This call is for <em>alignment,</em><br>not persuasion.</h2>
-    <p class="qual-body">If you have watched the video and read this page, and it resonates — book the call. If you are still heavily skeptical, we are probably not there yet. And that is fine. Trust in B2B is built over time.</p>
+    <p class="qual-body">If you have watched the video and read this page, and it resonates — apply. If you are still heavily sceptical, we are probably not there yet. And that is fine. Trust in B2B is built over time.</p>
     <div class="qual-divider"></div>
     <p class="qual-final">Follow along. Watch more. Read more. And when you feel clarity — not just curiosity — then let's talk. I am not interested in high-pressure conversations. I am interested in working with founders who are ready to engineer their growth properly.</p>
   </div>
@@ -598,10 +796,10 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
   <div class="modal-box">
     <div class="modal-header">
       <div class="modal-header-text">
-        <h3>Growth OS <em>Discovery Call</em></h3>
-        <p>Free 20-minute call · No commitment required · Audit starts at €3,500</p>
+        <h3>Growth OS <em>Founding Cohort</em></h3>
+        <p>Free 20-minute fit call &middot; Seven spots &middot; Audit from &euro;2,500</p>
       </div>
-      <button class="modal-close" onclick="closeBooking()">✕</button>
+      <button class="modal-close" onclick="closeBooking()">&#x2715;</button>
     </div>
     <div class="modal-body">
       <iframe src="https://api.leadconnectorhq.com/widget/booking/iimzq19YTn7txrlkbSnS" style="width:100%;border:none;overflow:hidden;min-height:580px;" scrolling="no" id="iimzq19YTn7txrlkbSnS_1773141744247"></iframe>
