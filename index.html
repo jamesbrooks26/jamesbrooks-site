@@ -193,8 +193,17 @@ footer{background:var(--deep-navy);border-top:1px solid rgba(201,168,76,0.1);pad
   .cred-item:last-child{border-bottom:none;}
   .engine-grid{grid-template-columns:1fr;}
   .opp-panel,.venn-section{padding:36px 20px;}
-  .venn-section{overflow:hidden;}
+  .venn-section{overflow:visible;}
   .venn-section svg{width:100%;height:auto;max-width:100%;}
+  .venn-legend-desc{font-size:12px;line-height:1.6;}
+  .venn-legend-item{margin-bottom:20px;padding-bottom:20px;}
+}
+@media(max-width:420px){
+  .hero-img-speaking{opacity:0.12;}
+  .hero-photo-fade{background:linear-gradient(to bottom,rgba(8,22,40,0.7) 0%,rgba(8,22,40,0.6) 40%,rgba(8,22,40,0.92) 100%);}
+  .hero-inner{padding:100px 20px 72px;}
+  .venn-section{padding:28px 16px;}
+  .venn-legend-desc{font-size:11px;}
 }
 </style>
 </head>
