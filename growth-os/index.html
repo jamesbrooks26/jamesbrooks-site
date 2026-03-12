@@ -120,19 +120,31 @@ nav {
 .section-eyebrow::before { content:''; width:20px; height:1px; background:var(--gold); opacity:0.5; }
 .section-eyebrow::after  { content:''; width:20px; height:1px; background:var(--gold); opacity:0.5; }
 
-/* TRUST BRIDGE */
-.trust { background: var(--warm-white); padding: 100px 40px; text-align: center; }
-.trust-inner { max-width: 680px; margin: 0 auto; }
-.trust h2 {
+/* OPPORTUNITY */
+.opportunity { background: var(--warm-white); padding: 100px 40px; text-align: center; }
+.opportunity-inner { max-width: 680px; margin: 0 auto; }
+.opportunity h2 {
   font-family:'Playfair Display',serif; font-weight:700;
   font-size:clamp(26px,3.5vw,40px); line-height:1.12;
   color:var(--navy); letter-spacing:-0.01em; margin-bottom:32px;
 }
-.trust h2 em { font-style:italic; color:var(--gold-muted); }
-.trust-body { font-family:'EB Garamond',serif; font-size:19px; color:var(--text-body); line-height:1.8; text-align:left; }
-.trust-body p { margin-bottom:22px; }
-.trust-body p:last-child { margin-bottom:0; }
-.trust-cta { margin-top:40px; padding-top:32px; border-top:1px solid rgba(11,31,58,0.1); text-align:center; }
+.opportunity h2 em { font-style:italic; color:var(--gold-muted); }
+.opportunity-body { font-family:'EB Garamond',serif; font-size:19px; color:var(--text-body); line-height:1.8; text-align:left; }
+.opportunity-body p { margin-bottom:22px; }
+.opportunity-body p:last-child { margin-bottom:0; }
+.opportunity-pull {
+  margin:40px 0; padding:32px 40px;
+  border-left:3px solid var(--gold);
+  background:rgba(201,168,76,0.04);
+  text-align:left;
+}
+.opportunity-pull p {
+  font-family:'Playfair Display',serif; font-size:20px; font-weight:700;
+  color:var(--navy); line-height:1.45; font-style:italic;
+  margin:0;
+}
+.opportunity-pull p em { color:var(--gold-muted); }
+.opportunity-cta { margin-top:40px; padding-top:32px; border-top:1px solid rgba(11,31,58,0.1); text-align:center; }
 .btn-trust {
   display:inline-flex; align-items:center; justify-content:center;
   background:var(--navy); color:var(--off-white);
@@ -142,7 +154,7 @@ nav {
   margin-bottom:10px; transition:background 0.2s;
 }
 .btn-trust:hover { background:var(--mid-navy); }
-.trust-cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); letter-spacing:0.04em; }
+.opportunity-cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); letter-spacing:0.04em; }
 
 /* PROBLEMS */
 .problems { background: var(--navy); padding: 100px 40px; }
@@ -508,20 +520,23 @@ footer { background:var(--deep-navy); padding:32px 40px; border-top:1px solid rg
   </div>
 </section>
 
-<!-- TRUST BRIDGE -->
-<section class="trust">
-  <div class="trust-inner">
-    <div class="section-eyebrow">Before We Get Into The Model</div>
-    <h2>You have already<br>tried <em>things.</em></h2>
-    <div class="trust-body">
-      <p>I started my career as an investment analyst, working across Dublin, New York, and Melbourne. Pattern recognition was the job. You learned to spot structural shifts early, the ones that quietly separated the businesses pulling ahead from the ones falling behind. I moved back to Ireland in 2012 to build a business and raise a family here, and I brought that lens with me.</p>
-      <p>What followed was not just observation. Each wave reshaped how I ran my own consulting business. Outsourcing first, then automation, and now AI. I did not watch from the outside and take notes. I rebuilt around each one as it arrived. That is where the Growth OS came from. Not theory. Fourteen years of running a founder-led business through every structural shift and figuring out what actually compounds.</p>
-      <p>Most of the founders I speak to have already done a lot right. They have built relationships, delivered real results, and grown through reputation and referrals. And at some point, they have tried to make growth more systematic — agencies, outbound tools, LinkedIn, automation. Some of it worked. Some did not.</p>
-      <p>But the real frustration is never effort. It is uncertainty. Not knowing exactly where next quarter's conversations are coming from. That uncertainty makes it harder to hire confidently, invest confidently, or scale confidently. The issue is not effort. It is structure. And structure is exactly what the Growth OS installs.</p>
+<!-- OPPORTUNITY -->
+<section class="opportunity">
+  <div class="opportunity-inner">
+    <div class="section-eyebrow">The Opportunity</div>
+    <h2>The same system we are using<br>to grow <em>Agentify360.</em></h2>
+    <div class="opportunity-body">
+      <p>I co-founded Agentify360 with three partners. The Growth OS is not something we developed for clients and then decided to sell. It is the operating system we built to grow our own company — the exact infrastructure we are running right now to build pipeline, establish authority, and convert conversations into revenue.</p>
+      <p>For seven businesses, we are willing to open that up.</p>
+      <p>Not as a course. Not as a template. We will build it inside your company the same way we built it inside ours — engine by engine, over 12 months. You own everything. Your team learns to run it. And you join a cohort of founders who are building, experimenting, and growing alongside each other.</p>
+      <p>What makes this different from any other growth engagement is who is in the room. Between the four co-founders of Agentify360, we bring combined experience that includes two eight-figure business exits — both in SaaS. That experience shapes every decision we make about how this system is built, refined, and optimised. When you join this cohort, you are not just getting a system. You are getting the thinking behind it.</p>
     </div>
-    <div class="trust-cta">
+    <div class="opportunity-pull">
+      <p>This is not a client relationship.<br>It is closer to a <em>founding partnership.</em></p>
+    </div>
+    <div class="opportunity-cta">
       <button onclick="openBooking()" class="btn-trust">Apply for a Spot</button>
-      <p class="trust-cta-note">Free 20-minute fit call. Seven spots. No commitment required.</p>
+      <p class="opportunity-cta-note">Free 20-minute fit call. Seven spots. No commitment required.</p>
     </div>
   </div>
 </section>
