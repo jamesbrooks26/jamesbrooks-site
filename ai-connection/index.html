@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Connection Request Framework | James Brooks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=EB+Garamond:wght@400;500&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:       #0B1F3A;
+    --mid-navy:   #152E50;
+    --gold:       #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-muted: #A8883A;
+    --off-white:  #F5F1EA;
+    --warm-white: #FAF8F4;
+    --text-muted: #6B7E94;
+    --pale-blue:  #D6E4F7;
+    --mid-blue:   #2E4E8A;
+    --max-w: 780px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--warm-white); color: var(--navy); font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; }
+
+  .hero { background: var(--navy); padding: 72px 24px 60px; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events:none; }
+  .hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; text-align: center; }
+  .hero-os { font-family:'DM Sans',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .hero-engine-label { display:inline-flex; align-items:center; gap:12px; font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:28px; }
+  .hero-engine-label::before,.hero-engine-label::after { content:''; display:block; width:28px; height:1px; background:var(--gold); opacity:0.5; }
+  .hero h1 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(34px,6vw,54px); line-height:1.1; color:var(--off-white); letter-spacing:-0.01em; margin-bottom:22px; }
+  .hero h1 em { font-style:italic; color:var(--gold-light); }
+  .hero-sub { font-family:'EB Garamond',serif; font-size:19px; color:rgba(245,241,234,0.75); max-width:560px; margin:0 auto 36px; line-height:1.6; }
+  .promise-strip { display:flex; justify-content:center; border-top:1px solid rgba(201,168,76,0.2); border-bottom:1px solid rgba(201,168,76,0.2); padding:18px 0; flex-wrap:wrap; }
+  .promise-item { display:flex; align-items:center; gap:9px; padding:6px 24px; color:var(--off-white); font-size:13px; font-weight:300; border-right:1px solid rgba(201,168,76,0.2); }
+  .promise-item:last-child { border-right:none; }
+
+  .subscribe-bar { background:var(--mid-navy); border-top:3px solid var(--gold); border-bottom:1px solid rgba(201,168,76,0.12); padding:20px 24px; }
+  .subscribe-bar-inner { max-width:var(--max-w); margin:0 auto; display:flex; flex-direction:column; gap:16px; }
+  .subscribe-bar-text { flex:1; min-width:200px; }
+  .subscribe-bar-text p { margin:0; font-family:'DM Sans',sans-serif; font-size:13.5px; font-weight:300; color:var(--off-white); line-height:1.5; max-width:100%; }
+  .subscribe-bar-text p strong { font-weight:600; color:var(--gold-light); }
+  .subscribe-form { display:flex; gap:8px; flex-wrap:nowrap; width:100%; }
+  .subscribe-input { background:rgba(255,255,255,0.07); border:1px solid rgba(201,168,76,0.25); border-radius:3px; padding:12px 16px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300; color:var(--off-white); flex:1; min-width:0; outline:none; transition:border-color 0.2s; }
+  .subscribe-input::placeholder { color:rgba(245,241,234,0.35); }
+  .subscribe-input:focus { border-color:rgba(201,168,76,0.6); }
+  .subscribe-btn { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:12px 28px; border-radius:3px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; flex-shrink:0; }
+  .subscribe-btn:hover { background:var(--gold-light); }
+  .subscribe-note { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:6px; }
+
+  .content { max-width:var(--max-w); margin:0 auto; padding:0 24px 80px; }
+  section { padding-top:52px; }
+
+  .section-label { font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--gold); opacity:0.2; }
+
+  h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(24px,4vw,32px); line-height:1.2; color:var(--navy); letter-spacing:-0.01em; margin-bottom:18px; }
+  h2 em { font-style:italic; color:var(--gold-muted); }
+  p { font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.75; max-width:65ch; margin-bottom:14px; }
+
+  .callout { background:var(--navy); border-left:3px solid var(--gold); border-radius:2px; padding:22px 26px; margin:28px 0; }
+  .callout p { color:var(--off-white); margin:0; font-size:15px; max-width:100%; }
+  .callout p+p { margin-top:10px; }
+  .callout strong { color:var(--gold-light); font-weight:600; }
+
+  .shift-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0; }
+  .shift-card { background:var(--off-white); border-radius:4px; padding:18px 20px; border-top:2px solid transparent; }
+  .shift-card.old { border-top-color:var(--text-muted); }
+  .shift-card.new { border-top-color:var(--gold); }
+  .shift-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); margin-bottom:7px; }
+  .shift-card.new .shift-label { color:var(--gold-muted); }
+  .shift-card p { margin:0; font-size:14px; color:var(--navy); max-width:100%; }
+
+  .outcomes { list-style:none; margin:20px 0 28px; }
+  .outcomes li { display:flex; align-items:flex-start; gap:13px; padding:11px 0; border-bottom:1px solid rgba(11,31,58,0.08); font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.6; }
+  .outcomes li::before { content:''; width:6px; height:6px; background:var(--gold); border-radius:50%; flex-shrink:0; margin-top:9px; }
+
+  .tools-bar { background:var(--mid-navy); border-radius:4px; padding:14px 20px; display:flex; align-items:center; gap:12px; margin:26px 0; flex-wrap:wrap; }
+  .tools-bar-label { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+  .tools-bar-sep { width:1px; height:16px; background:rgba(201,168,76,0.3); flex-shrink:0; }
+  .tools-bar p { color:var(--off-white); font-size:14px; font-weight:300; margin:0; max-width:100%; }
+
+  .for-who { background:var(--off-white); border-radius:4px; padding:28px 28px; margin:24px 0; }
+  .for-who ul { list-style:none; margin:0; }
+  .for-who ul li { display:flex; align-items:flex-start; gap:12px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; padding:9px 0; border-bottom:1px solid rgba(11,31,58,0.08); line-height:1.6; }
+  .for-who ul li:last-child { border-bottom:none; }
+  .for-who ul li::before { content:'→'; color:var(--gold-muted); font-weight:600; flex-shrink:0; }
+
+  .rule { border:none; border-top:1px solid rgba(11,31,58,0.1); margin:44px 0; }
+
+  .prompt-section { padding-top:48px; }
+  .prompt-header { display:flex; align-items:center; gap:18px; margin-bottom:14px; }
+  .prompt-number { width:42px; height:42px; background:var(--mid-blue); color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:700; font-size:17px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid rgba(201,168,76,0.25); }
+  .prompt-title-block h3 { font-family:'Playfair Display',serif; font-weight:700; font-size:21px; color:var(--navy); letter-spacing:-0.01em; }
+  .prompt-title-block .prompt-sub { font-family:'EB Garamond',serif; font-size:15px; color:var(--text-muted); font-style:italic; margin:0; max-width:100%; padding:0; }
+  .what-doing { background:var(--off-white); border-radius:4px; padding:14px 18px; margin-bottom:18px; }
+  .what-doing p { font-family:'EB Garamond',serif; font-size:16px; color:var(--text-muted); font-style:italic; margin:0; max-width:100%; }
+  .prompt-code { background:var(--navy); border-radius:4px; padding:26px 28px; margin-bottom:14px; position:relative; }
+  .prompt-code::before { content:'PROMPT'; position:absolute; top:13px; right:16px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; color:var(--gold); opacity:0.6; }
+  .prompt-code pre { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; line-height:1.85; color:var(--off-white); white-space:pre-wrap; word-break:break-word; }
+  .prompt-code pre strong { color:var(--gold-light); font-weight:600; }
+  .output-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.28); border-radius:3px; padding:8px 14px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:var(--gold-muted); }
+  .output-badge::before { content:'✓'; color:var(--gold); font-size:14px; }
+  .prompt-divider { border:none; border-top:1px solid rgba(11,31,58,0.08); margin:44px 0 0; }
+
+  .case-study { background:var(--navy); border-radius:6px; padding:38px 34px; margin:52px 0; position:relative; overflow:hidden; }
+  .case-study::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold) 0%,transparent 100%); }
+  .cs-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+  .case-study h3 { font-family:'Playfair Display',serif; font-weight:700; font-size:21px; color:var(--off-white); margin-bottom:14px; }
+  .case-study p { color:rgba(245,241,234,0.75); max-width:100%; }
+  .quote-block { background:rgba(245,241,234,0.06); border-left:2px solid var(--gold); border-radius:2px; padding:13px 17px; margin:14px 0; font-family:'EB Garamond',serif; font-size:17px; font-style:italic; color:var(--off-white); line-height:1.6; }
+  .cs-table { width:100%; border-collapse:collapse; margin:18px 0; font-size:13px; }
+  .cs-table th { background:rgba(201,168,76,0.14); color:var(--gold-light); font-family:'DM Sans',sans-serif; font-weight:600; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; padding:9px 13px; text-align:left; border-bottom:1px solid rgba(201,168,76,0.2); }
+  .cs-table td { padding:10px 13px; vertical-align:top; color:rgba(245,241,234,0.8); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.05); font-size:13px; }
+  .cs-table tr:last-child td { border-bottom:none; }
+  .cs-table tr:nth-child(even) td { background:rgba(255,255,255,0.03); }
+  .result-box { background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:18px 20px; margin-top:22px; }
+  .result-box p { color:var(--off-white); margin:0; font-size:14px; max-width:100%; }
+  .result-box strong { color:var(--gold-light); font-weight:600; }
+  .time-badge { display:inline-block; font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--gold-light); margin-bottom:6px; }
+  .cs-section-label { color:var(--gold); margin-top:24px; margin-bottom:10px; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-family:'DM Sans',sans-serif; }
+
+  .steps-list { counter-reset:steps; list-style:none; margin:20px 0; }
+  .steps-list li { counter-increment:steps; display:flex; align-items:flex-start; gap:15px; padding:14px 0; border-bottom:1px solid rgba(11,31,58,0.08); font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.65; }
+  .steps-list li::before { content:counter(steps); width:28px; height:28px; background:var(--navy); color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:700; font-size:13px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:3px; }
+
+  .where-fits { background:var(--navy); border-radius:4px; padding:28px 30px; margin:48px 0 0; }
+  .where-fits-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .where-fits p { color:rgba(245,241,234,0.8); font-size:15px; max-width:100%; margin-bottom:10px; }
+  .where-fits p:last-child { margin-bottom:0; }
+
+  .cta-block { background:var(--navy); border-radius:6px; padding:48px 40px; margin-top:52px; text-align:center; position:relative; overflow:hidden; }
+  .cta-block::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,168,76,0.1) 0%, transparent 70%); pointer-events:none; }
+  .cta-block::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .cta-eyebrow { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; position:relative; }
+  .cta-block h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(24px,4vw,34px); color:var(--off-white); line-height:1.2; margin-bottom:6px; position:relative; max-width:100%; }
+  .cta-block h2 em { color:var(--gold-light); font-style:italic; }
+  .cta-subhead { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(18px,3vw,24px); color:var(--gold-light); font-style:italic; margin-bottom:18px; position:relative; }
+  .cta-block .cta-body { font-family:'EB Garamond',serif; font-size:18px; color:rgba(245,241,234,0.75); max-width:520px; margin:0 auto 30px; line-height:1.65; position:relative; }
+  .cta-btn { display:inline-block; background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; padding:15px 38px; border-radius:3px; position:relative; transition:background 0.2s, transform 0.15s; }
+  .cta-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
+  .cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; position:relative; }
+
+  footer { background:var(--mid-navy); padding:26px 24px; border-top:1px solid rgba(201,168,76,0.15); }
+  .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .footer-brand { font-family:'Playfair Display',serif; font-weight:700; font-size:16px; color:var(--off-white); }
+  .footer-meta { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); }
+
+  @media(max-width:600px){
+    .promise-strip{flex-direction:column;align-items:center;}
+    .promise-item{border-right:none;border-bottom:1px solid rgba(201,168,76,0.15);padding:8px 0;}
+    .promise-item:last-child{border-bottom:none;}
+    .shift-grid{grid-template-columns:1fr;}
+    .cta-block{padding:34px 22px;}
+    .case-study{padding:26px 20px;}
+    .cs-table{font-size:12px;}
+    .cs-table td,.cs-table th{padding:7px 9px;}
+    .footer-inner{flex-direction:column;text-align:center;}
+    .subscribe-form{flex-wrap:wrap;}
+    .subscribe-input{width:100%;flex:none;}
+    .subscribe-btn{width:100%;text-align:center;}
+  }
+
+  /* COPY BUTTON */
+  .copy-btn { position:absolute; top:13px; left:16px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.25); border-radius:3px; padding:4px 10px; cursor:pointer; transition:background 0.2s; }
+  .copy-btn:hover { background:rgba(201,168,76,0.22); }
+  .copy-btn.copied { color:var(--off-white); background:rgba(201,168,76,0.25); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+  <div class="hero-engine-label">Connection Engine</div>
+    <h1>The AI <em>Connection Request</em> Framework</h1>
+    <p class="hero-sub">The AI prompts that get connection requests accepted by cold ICPs, without sounding like outreach.</p>
+    <div class="promise-strip">
+      <div class="promise-item">&#9203; 10-minute setup</div>
+      <div class="promise-item">&#128140; Higher acceptance rates</div>
+      <div class="promise-item">&#129309; No pitch required</div>
+    </div>
+  </div>
+</header>
+
+<div class="subscribe-bar">
+  <div class="subscribe-bar-inner">
+    <div class="subscribe-bar-text">
+      <p><strong>This is one of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
+    </div>
+    <div style="width:100%;">
+      <div class="subscribe-form">
+        <input type="text" class="subscribe-input" id="sub-first" placeholder="First name">
+        <input type="email" class="subscribe-input" id="sub-email" placeholder="Email address">
+        <button class="subscribe-btn" onclick="handleSubscribe()">Send me the library</button>
+      </div>
+      <p class="subscribe-success" id="sub-success" style="display:none;color:var(--gold-light);font-size:13px;margin-top:6px;">You're in. Check your inbox shortly.</p>
+      <p class="subscribe-error" id="sub-error" style="display:none;color:#e07070;font-size:13px;margin-top:6px;">Something went wrong. Please try again.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function handleSubscribe() {
+  var email = document.getElementById('sub-email').value.trim();
+  var btn = document.querySelector('.subscribe-btn');
+  if (!email || !email.includes('@')) {
+    document.getElementById('sub-error').style.display = 'block';
+    document.getElementById('sub-success').style.display = 'none';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  fetch('https://api.encharge.io/v1/people', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Encharge-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjE0ODc1NCwibmFtZSI6ImJhc2UifQ.zicaDH6sR0oNELbT0y0QcOXNaSB5IvdHvJ9vxte2jcw'
+    },
+    body: JSON.stringify({
+      people: [{
+        email: email,
+        firstName: document.getElementById('sub-first').value.trim(),
+        tags: 'growth library'
+      }]
+    })
+  })
+  .then(function(res) {
+    if (res.ok) {
+      document.getElementById('sub-success').style.display = 'block';
+      document.getElementById('sub-error').style.display = 'none';
+      document.getElementById('sub-email').value = '';
+      btn.textContent = 'Sent!';
+    } else {
+      throw new Error('API error');
+    }
+  })
+  .catch(function() {
+    document.getElementById('sub-error').style.display = 'block';
+    document.getElementById('sub-success').style.display = 'none';
+    btn.disabled = false;
+    btn.textContent = 'Send me the library';
+  });
+}
+</script>
+
+<main class="content">
+
+  <section>
+    <div class="section-label">The problem</div>
+    <h2>Why most connection requests <em>get ignored</em></h2>
+    <p>The connection request is the first word in every LinkedIn relationship. Most founders treat it like a formality. They send the default message, or nothing at all, and wait.</p>
+    <p>The result is a 20 to 30% acceptance rate when it could be 60 to 70%. The problem is not that the person does not want to connect. The problem is that the request gives them no reason to.</p>
+    <p>A cold ICP sees your request and asks one silent question: why should I let this person into my network? If the request cannot answer that in two sentences, it gets ignored.</p>
+    <div class="callout">
+      <p><strong>The Acceptance Gap</strong> is the distance between the number of connection requests you send and the number that actually get accepted.</p>
+      <p>Most founders accept this gap as normal. It is not. It is a messaging problem, and AI can fix it in under ten minutes.</p>
+    </div>
+    <p style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;">The shift:</p>
+    <div class="shift-grid">
+      <div class="shift-card old">
+        <div class="shift-label">What most founders send</div>
+        <p>Default LinkedIn message or no message. Generic opener with no reference to shared context. Immediate pitch after acceptance.</p>
+      </div>
+      <div class="shift-card new">
+        <div class="shift-label">What this framework produces</div>
+        <p>A specific, contextual request that shows you did your homework. A reason to connect that benefits the recipient. Relationship-first sequencing after acceptance.</p>
+      </div>
+    </div>
+    <p>That single shift changes who says yes.</p>
+  </section>
+
+  <section>
+    <div class="section-label">What you'll walk away with</div>
+    <ul class="outcomes">
+      <li>Three plug-and-play connection request templates built from your ICP profile</li>
+      <li>A scoring system to decide which template to use based on the context of each connection</li>
+      <li>A follow-up message sequence that keeps new connections warm without pitching</li>
+      <li>A worked example showing how one firm moved from a 22% to a 64% acceptance rate in 30 days</li>
+    </ul>
+    <div class="tools-bar">
+      <span class="tools-bar-label">You need</span>
+      <span class="tools-bar-sep"></span>
+      <p>Claude, ChatGPT or Gemini &nbsp;&middot;&nbsp; Your ICP Profile from Resource 01 &nbsp;&middot;&nbsp; 10 minutes</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Who this is for</div>
+    <h2>This workflow works best if you:</h2>
+    <div class="for-who">
+      <ul>
+        <li>Send connection requests to cold ICPs and get fewer than 40% accepted</li>
+        <li>Struggle to write a connection note that sounds personal without sounding like a pitch</li>
+        <li>Know who you want to reach but are not sure how to open the relationship the right way</li>
+        <li>Want to build a warm network of ICPs before your content or outreach is fully in place</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">01</div>
+      <div class="prompt-title-block">
+        <h3>The Context Builder</h3>
+        <p class="prompt-sub">Generates a personalised connection note based on the ICP's profile and recent activity</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: Building a connection request that references something specific about the recipient. The goal is to show you have looked at their profile and have a genuine reason to connect, not just a target list.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B outreach specialist. Your one metric is connection request acceptance rate.
+
+<strong>TASK:</strong> Write a LinkedIn connection request message using the inputs below. Under 200 characters. No pitch.
+
+<strong>INPUTS:</strong>
+ICP name and role: [job title and company type]
+One thing notable about their profile or recent activity: [recent post topic / award / company news / shared connection]
+Why connecting benefits them: [what shared context, perspective, or value you bring]
+
+<strong>RULES:</strong>
+- Reference the specific observation in the first sentence
+- Never mention your service or offer
+- End with a natural open door, not a close
+- Under 200 characters
+- Output: one connection request message, ready to send</pre>
+    </div>
+    <div class="output-badge">OUTPUT: A personalised connection request under 200 characters, ready to send</div>
+  </div>
+
+  <hr class="prompt-divider">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">02</div>
+      <div class="prompt-title-block">
+        <h3>The Trigger Connector</h3>
+        <p class="prompt-sub">Writes a connection request tied to a specific buying signal or trigger event</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: Using the trigger events identified in Resource 01 to write a connection request that arrives at exactly the right moment. When someone posts about a problem your offer solves, the window for a warm connection is open.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B sales strategist. You specialise in context-triggered outreach.
+
+<strong>TASK:</strong> Write a LinkedIn connection request using the trigger event below as the opening context. Under 200 characters. No pitch.
+
+<strong>INPUTS:</strong>
+Trigger event: [describe what the ICP posted or did that signals buying intent]
+ICP role and company type: [who they are]
+What you genuinely found interesting about it: [one honest observation, not flattery]
+
+<strong>RULES:</strong>
+- Reference the trigger directly in the opening
+- Sound like a person, not an outreach tool
+- Zero service mentions
+- Under 200 characters
+- Output: one ready-to-send connection request message</pre>
+    </div>
+    <div class="output-badge">OUTPUT: A trigger-referenced connection request that arrives at the right moment</div>
+  </div>
+
+  <hr class="prompt-divider">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">03</div>
+      <div class="prompt-title-block">
+        <h3>The Warm-Up Sequence</h3>
+        <p class="prompt-sub">Builds a 3-message follow-up sequence for newly accepted connections</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: The connection request is the opening move. What happens next determines whether the relationship develops or disappears. This prompt builds the first three messages after acceptance, designed to warm the relationship without pitching.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B relationship strategist. Your focus is building trust before pitching.
+
+<strong>TASK:</strong> Write a 3-message warm-up sequence for a newly accepted connection using the context below.
+
+<strong>INPUTS:</strong>
+ICP profile: [role / company / challenge they are facing]
+Why they accepted: [what common ground or trigger got them to accept]
+Your one core value-add: [one thing you can share, observe, or offer that would genuinely be useful to this person]
+
+<strong>MESSAGE RULES:</strong>
+- Message 1 (Day 1): Thank them for connecting. Reference one specific thing from their profile. Under 80 words.
+- Message 2 (Day 4&ndash;7): Share one piece of value. A resource, observation, or question relevant to their world. No ask. Under 100 words.
+- Message 3 (Day 10&ndash;14): A soft open door. Something that signals availability without pushing. Under 80 words.
+
+<strong>GLOBAL RULES:</strong>
+- No pitching in any message
+- Each message must read like it was written for this one person
+- Output: three numbered messages with send-day label</pre>
+    </div>
+    <div class="output-badge">OUTPUT: A 3-message warm-up sequence for newly accepted connections</div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="case-study">
+    <div class="cs-label">Worked example &middot; Ashford Consulting Partners</div>
+    <h3>From a 22% acceptance rate to 64% in 30 days</h3>
+    <p>A B2B strategy consulting firm targeting founders of professional services businesses in the &euro;3M to &euro;8M range. They had been sending connection requests for six months with a 22% acceptance rate and no structured follow-up process.</p>
+    <p>Here is what the framework produced in month one.</p>
+
+    <p class="cs-section-label">Template comparison: before and after</p>
+    <table class="cs-table">
+      <thead><tr><th>Request type</th><th>Message sent</th><th>Acceptance rate</th></tr></thead>
+      <tbody>
+        <tr><td>Default (before)</td><td>No message attached</td><td>18%</td></tr>
+        <tr><td>Generic opener</td><td>"I'd love to connect with other professionals in this space."</td><td>26%</td></tr>
+        <tr><td>Context Builder (Prompt 1)</td><td>Referenced a specific post about scaling without headcount. Under 200 characters.</td><td>58%</td></tr>
+        <tr><td>Trigger Connector (Prompt 2)</td><td>Arrived 24 hours after ICP posted about a failed hire. Referenced it directly.</td><td>71%</td></tr>
+      </tbody>
+    </table>
+
+    <p class="cs-section-label">Sample Warm-Up Sequence (Prompt 3 output)</p>
+    <div class="quote-block">"Message 1: Thanks for connecting. Your post last week about the cost of referral dependency resonated. It is one of those problems that looks like a sales issue but runs much deeper. Looking forward to following your content."</div>
+    <div class="quote-block">"Message 2: Thought this might be relevant given what you shared. There is a model for mapping where pipeline is actually coming from versus where founders think it comes from. Happy to share if useful, no agenda."</div>
+    <div class="quote-block">"Message 3: Have been looking at a few firms in your space recently. If you ever want a second set of eyes on your pipeline architecture, I am easy to reach. No pressure, just an open door."</div>
+
+    <div class="result-box">
+      <div class="time-badge">30 days.</div>
+      <p>47 connection requests sent using this framework. 30 accepted. 8 warm conversations opened by message two.<br><br><strong>Two calls booked by day 30. Zero cold pitches sent.</strong></p>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-label">What to do right now</div>
+    <ol class="steps-list">
+      <li>Pull your ICP Profile from Resource 01. Paste it into Prompt 1. Generate your three base templates before you send a single request.</li>
+      <li>Build a list of 20 ICPs to target this week. For each one, note one specific thing about their profile or recent activity.</li>
+      <li>Use Prompt 2 for any ICP who has posted about a problem in the last 7 days. These are the highest-priority connections right now.</li>
+      <li>Set up Prompt 3 as a saved template. When someone accepts, send Message 1 the same day.</li>
+      <li>Track your acceptance rate weekly. If it drops below 50%, rerun Prompt 1 with updated ICP context.</li>
+    </ol>
+  </section>
+
+  <div class="where-fits">
+    <div class="where-fits-label">Where this fits</div>
+    <p>The connection request is the entry point to every ICP relationship in your Connection Engine. Before you can comment strategically, post content, or trigger outreach, you need the connection. This framework ensures that first touchpoint lands rather than disappears.</p>
+    <p>It feeds directly into the AI Comment Visibility Engine (Resource 03) and the AI Feed Intelligence Tracker (Resource 05), both of which require a base of connected ICPs to function at full capacity.</p>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-eyebrow">The Growth OS</div>
+    <h2>Your connections are building.</h2>
+    <div class="cta-subhead">Now build the system behind them.</div>
+    <p class="cta-body">The Growth OS helps founder-led B2B companies build predictable pipeline. Compete on intelligence, not headcount. AI is your multiplier. This system is your advantage.</p>
+    <a href="https://jamesbrooks.com/growth-os" class="cta-btn">See the Growth OS &rarr;</a>
+    <p class="cta-note">jamesbrooks.com/growth-os</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">James Brooks</div>
+    <div class="footer-meta">The Growth OS &nbsp;&middot;&nbsp; jamesbrooks.com</div>
+  </div>
+</footer>
+
+<script>
+function copyPrompt(btn) {
+  var pre = btn.parentElement.querySelector('pre');
+  var text = pre.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>

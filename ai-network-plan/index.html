@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Founder Network Plan | James Brooks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=EB+Garamond:wght@400;500&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:       #0B1F3A;
+    --mid-navy:   #152E50;
+    --gold:       #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-muted: #A8883A;
+    --off-white:  #F5F1EA;
+    --warm-white: #FAF8F4;
+    --text-muted: #6B7E94;
+    --pale-blue:  #D6E4F7;
+    --mid-blue:   #2E4E8A;
+    --max-w: 780px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--warm-white); color: var(--navy); font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; }
+
+  .hero { background: var(--navy); padding: 72px 24px 60px; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events:none; }
+  .hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; text-align: center; }
+  .hero-os { font-family:'DM Sans',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .hero-engine-label { display:inline-flex; align-items:center; gap:12px; font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:28px; }
+  .hero-engine-label::before,.hero-engine-label::after { content:''; display:block; width:28px; height:1px; background:var(--gold); opacity:0.5; }
+  .hero h1 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(34px,6vw,54px); line-height:1.1; color:var(--off-white); letter-spacing:-0.01em; margin-bottom:22px; }
+  .hero h1 em { font-style:italic; color:var(--gold-light); }
+  .hero-sub { font-family:'EB Garamond',serif; font-size:19px; color:rgba(245,241,234,0.75); max-width:560px; margin:0 auto 36px; line-height:1.6; }
+  .promise-strip { display:flex; justify-content:center; border-top:1px solid rgba(201,168,76,0.2); border-bottom:1px solid rgba(201,168,76,0.2); padding:18px 0; flex-wrap:wrap; }
+  .promise-item { display:flex; align-items:center; gap:9px; padding:6px 24px; color:var(--off-white); font-size:13px; font-weight:300; border-right:1px solid rgba(201,168,76,0.2); }
+  .promise-item:last-child { border-right:none; }
+
+  .subscribe-bar { background:var(--mid-navy); border-top:3px solid var(--gold); border-bottom:1px solid rgba(201,168,76,0.12); padding:20px 24px; }
+  .subscribe-bar-inner { max-width:var(--max-w); margin:0 auto; display:flex; flex-direction:column; gap:16px; }
+  .subscribe-bar-text { flex:1; min-width:200px; }
+  .subscribe-bar-text p { margin:0; font-family:'DM Sans',sans-serif; font-size:13.5px; font-weight:300; color:var(--off-white); line-height:1.5; max-width:100%; }
+  .subscribe-bar-text p strong { font-weight:600; color:var(--gold-light); }
+  .subscribe-form { display:flex; gap:8px; flex-wrap:nowrap; width:100%; }
+  .subscribe-input { background:rgba(255,255,255,0.07); border:1px solid rgba(201,168,76,0.25); border-radius:3px; padding:12px 16px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300; color:var(--off-white); flex:1; min-width:0; outline:none; transition:border-color 0.2s; }
+  .subscribe-input::placeholder { color:rgba(245,241,234,0.35); }
+  .subscribe-input:focus { border-color:rgba(201,168,76,0.6); }
+  .subscribe-btn { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:12px 28px; border-radius:3px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; flex-shrink:0; }
+  .subscribe-btn:hover { background:var(--gold-light); }
+  .subscribe-note { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:6px; }
+
+  .content { max-width:var(--max-w); margin:0 auto; padding:0 24px 80px; }
+  section { padding-top:52px; }
+
+  .section-label { font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--gold); opacity:0.2; }
+
+  h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(24px,4vw,32px); line-height:1.2; color:var(--navy); letter-spacing:-0.01em; margin-bottom:18px; }
+  h2 em { font-style:italic; color:var(--gold-muted); }
+  p { font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.75; max-width:65ch; margin-bottom:14px; }
+
+  .callout { background:var(--navy); border-left:3px solid var(--gold); border-radius:2px; padding:22px 26px; margin:28px 0; }
+  .callout p { color:var(--off-white); margin:0; font-size:15px; max-width:100%; }
+  .callout p+p { margin-top:10px; }
+  .callout strong { color:var(--gold-light); font-weight:600; }
+
+  .shift-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0; }
+  .shift-card { background:var(--off-white); border-radius:4px; padding:18px 20px; border-top:2px solid transparent; }
+  .shift-card.old { border-top-color:var(--text-muted); }
+  .shift-card.new { border-top-color:var(--gold); }
+  .shift-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); margin-bottom:7px; }
+  .shift-card.new .shift-label { color:var(--gold-muted); }
+  .shift-card p { margin:0; font-size:14px; color:var(--navy); max-width:100%; }
+
+  /* PHASE TABLE - styled to match cs-table but outside case-study */
+  .phase-table { width:100%; border-collapse:collapse; margin:22px 0; font-size:14px; }
+  .phase-table th { background:var(--mid-navy); color:var(--gold-light); font-family:'DM Sans',sans-serif; font-weight:600; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; padding:10px 14px; text-align:left; border-bottom:1px solid rgba(201,168,76,0.2); }
+  .phase-table td { padding:12px 14px; vertical-align:top; color:#2a3a50; font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.6; border-bottom:1px solid rgba(11,31,58,0.08); font-size:14px; background:var(--off-white); }
+  .phase-table tr:nth-child(even) td { background:var(--warm-white); }
+  .phase-label { display:inline-block; font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; font-family:'DM Sans',sans-serif; color:var(--mid-navy); }
+
+  .outcomes { list-style:none; margin:20px 0 28px; }
+  .outcomes li { display:flex; align-items:flex-start; gap:13px; padding:11px 0; border-bottom:1px solid rgba(11,31,58,0.08); font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.6; }
+  .outcomes li::before { content:''; width:6px; height:6px; background:var(--gold); border-radius:50%; flex-shrink:0; margin-top:9px; }
+
+  .tools-bar { background:var(--mid-navy); border-radius:4px; padding:14px 20px; display:flex; align-items:center; gap:12px; margin:26px 0; flex-wrap:wrap; }
+  .tools-bar-label { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+  .tools-bar-sep { width:1px; height:16px; background:rgba(201,168,76,0.3); flex-shrink:0; }
+  .tools-bar p { color:var(--off-white); font-size:14px; font-weight:300; margin:0; max-width:100%; }
+
+  .for-who { background:var(--off-white); border-radius:4px; padding:28px 28px; margin:24px 0; }
+  .for-who ul { list-style:none; margin:0; }
+  .for-who ul li { display:flex; align-items:flex-start; gap:12px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; padding:9px 0; border-bottom:1px solid rgba(11,31,58,0.08); line-height:1.6; }
+  .for-who ul li:last-child { border-bottom:none; }
+  .for-who ul li::before { content:'→'; color:var(--gold-muted); font-weight:600; flex-shrink:0; }
+
+  .rule { border:none; border-top:1px solid rgba(11,31,58,0.1); margin:44px 0; }
+
+  .prompt-section { padding-top:48px; }
+  .prompt-header { display:flex; align-items:center; gap:18px; margin-bottom:14px; }
+  .prompt-number { width:42px; height:42px; background:var(--mid-blue); color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:700; font-size:17px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid rgba(201,168,76,0.25); }
+  .prompt-title-block h3 { font-family:'Playfair Display',serif; font-weight:700; font-size:21px; color:var(--navy); letter-spacing:-0.01em; }
+  .prompt-title-block .prompt-sub { font-family:'EB Garamond',serif; font-size:15px; color:var(--text-muted); font-style:italic; margin:0; max-width:100%; padding:0; }
+  .what-doing { background:var(--off-white); border-radius:4px; padding:14px 18px; margin-bottom:18px; }
+  .what-doing p { font-family:'EB Garamond',serif; font-size:16px; color:var(--text-muted); font-style:italic; margin:0; max-width:100%; }
+  .prompt-code { background:var(--navy); border-radius:4px; padding:26px 28px; margin-bottom:14px; position:relative; }
+  .prompt-code::before { content:'PROMPT'; position:absolute; top:13px; right:16px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; color:var(--gold); opacity:0.6; }
+  .prompt-code pre { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; line-height:1.85; color:var(--off-white); white-space:pre-wrap; word-break:break-word; }
+  .prompt-code pre strong { color:var(--gold-light); font-weight:600; }
+  .output-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.28); border-radius:3px; padding:8px 14px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:var(--gold-muted); }
+  .output-badge::before { content:'✓'; color:var(--gold); font-size:14px; }
+  .prompt-divider { border:none; border-top:1px solid rgba(11,31,58,0.08); margin:44px 0 0; }
+
+  .case-study { background:var(--navy); border-radius:6px; padding:38px 34px; margin:52px 0; position:relative; overflow:hidden; }
+  .case-study::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold) 0%,transparent 100%); }
+  .cs-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+  .case-study h3 { font-family:'Playfair Display',serif; font-weight:700; font-size:21px; color:var(--off-white); margin-bottom:14px; }
+  .case-study p { color:rgba(245,241,234,0.75); max-width:100%; }
+  .quote-block { background:rgba(245,241,234,0.06); border-left:2px solid var(--gold); border-radius:2px; padding:13px 17px; margin:14px 0; font-family:'EB Garamond',serif; font-size:17px; font-style:italic; color:var(--off-white); line-height:1.6; }
+  .cs-table { width:100%; border-collapse:collapse; margin:18px 0; font-size:13px; }
+  .cs-table th { background:rgba(201,168,76,0.14); color:var(--gold-light); font-family:'DM Sans',sans-serif; font-weight:600; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; padding:9px 13px; text-align:left; border-bottom:1px solid rgba(201,168,76,0.2); }
+  .cs-table td { padding:10px 13px; vertical-align:top; color:rgba(245,241,234,0.8); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.05); font-size:13px; }
+  .cs-table tr:last-child td { border-bottom:none; }
+  .cs-table tr:nth-child(even) td { background:rgba(255,255,255,0.03); }
+  .result-box { background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:18px 20px; margin-top:22px; }
+  .result-box p { color:var(--off-white); margin:0; font-size:14px; max-width:100%; }
+  .result-box strong { color:var(--gold-light); font-weight:600; }
+  .time-badge { display:inline-block; font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--gold-light); margin-bottom:6px; }
+  .cs-section-label { color:var(--gold); margin-top:24px; margin-bottom:10px; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-family:'DM Sans',sans-serif; }
+
+  .steps-list { counter-reset:steps; list-style:none; margin:20px 0; }
+  .steps-list li { counter-increment:steps; display:flex; align-items:flex-start; gap:15px; padding:14px 0; border-bottom:1px solid rgba(11,31,58,0.08); font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.65; }
+  .steps-list li::before { content:counter(steps); width:28px; height:28px; background:var(--navy); color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:700; font-size:13px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:3px; }
+
+  .where-fits { background:var(--navy); border-radius:4px; padding:28px 30px; margin:48px 0 0; }
+  .where-fits-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .where-fits p { color:rgba(245,241,234,0.8); font-size:15px; max-width:100%; margin-bottom:10px; }
+  .where-fits p:last-child { margin-bottom:0; }
+
+  .cta-block { background:var(--navy); border-radius:6px; padding:48px 40px; margin-top:52px; text-align:center; position:relative; overflow:hidden; }
+  .cta-block::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,168,76,0.1) 0%, transparent 70%); pointer-events:none; }
+  .cta-block::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .cta-eyebrow { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; position:relative; }
+  .cta-block h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(24px,4vw,34px); color:var(--off-white); line-height:1.2; margin-bottom:6px; position:relative; max-width:100%; }
+  .cta-block h2 em { color:var(--gold-light); font-style:italic; }
+  .cta-subhead { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(18px,3vw,24px); color:var(--gold-light); font-style:italic; margin-bottom:18px; position:relative; }
+  .cta-block .cta-body { font-family:'EB Garamond',serif; font-size:18px; color:rgba(245,241,234,0.75); max-width:520px; margin:0 auto 30px; line-height:1.65; position:relative; }
+  .cta-btn { display:inline-block; background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; padding:15px 38px; border-radius:3px; position:relative; transition:background 0.2s, transform 0.15s; }
+  .cta-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
+  .cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; position:relative; }
+
+  footer { background:var(--mid-navy); padding:26px 24px; border-top:1px solid rgba(201,168,76,0.15); }
+  .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .footer-brand { font-family:'Playfair Display',serif; font-weight:700; font-size:16px; color:var(--off-white); }
+  .footer-meta { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); }
+
+  @media(max-width:600px){
+    .promise-strip{flex-direction:column;align-items:center;}
+    .promise-item{border-right:none;border-bottom:1px solid rgba(201,168,76,0.15);padding:8px 0;}
+    .promise-item:last-child{border-bottom:none;}
+    .shift-grid{grid-template-columns:1fr;}
+    .cta-block{padding:34px 22px;}
+    .case-study{padding:26px 20px;}
+    .cs-table{font-size:12px;}
+    .cs-table td,.cs-table th{padding:7px 9px;}
+    .footer-inner{flex-direction:column;text-align:center;}
+    .subscribe-form{flex-wrap:wrap;}
+    .subscribe-input{width:100%;flex:none;}
+    .subscribe-btn{width:100%;text-align:center;}
+  }
+
+  /* COPY BUTTON */
+  .copy-btn { position:absolute; top:13px; left:16px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.25); border-radius:3px; padding:4px 10px; cursor:pointer; transition:background 0.2s; }
+  .copy-btn:hover { background:rgba(201,168,76,0.22); }
+  .copy-btn.copied { color:var(--off-white); background:rgba(201,168,76,0.25); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+  <div class="hero-engine-label">Connection Engine</div>
+    <h1>The AI <em>Founder Network</em> Plan</h1>
+    <p class="hero-sub">A 90-day AI-assisted roadmap that takes you from 0 to 500 connected ICPs, without cold pitching once.</p>
+    <div class="promise-strip">
+      <div class="promise-item">&#128197; 90-day roadmap</div>
+      <div class="promise-item">&#129309; 500 ICP connections</div>
+      <div class="promise-item">&#128683; Zero cold pitching</div>
+    </div>
+  </div>
+</header>
+
+<div class="subscribe-bar">
+  <div class="subscribe-bar-inner">
+    <div class="subscribe-bar-text">
+      <p><strong>This is one of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
+    </div>
+    <div style="width:100%;">
+      <div class="subscribe-form">
+        <input type="text" class="subscribe-input" id="sub-first" placeholder="First name">
+        <input type="email" class="subscribe-input" id="sub-email" placeholder="Email address">
+        <button class="subscribe-btn" onclick="handleSubscribe()">Send me the library</button>
+      </div>
+      <p class="subscribe-success" id="sub-success" style="display:none;color:var(--gold-light);font-size:13px;margin-top:6px;">You're in. Check your inbox shortly.</p>
+      <p class="subscribe-error" id="sub-error" style="display:none;color:#e07070;font-size:13px;margin-top:6px;">Something went wrong. Please try again.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function handleSubscribe() {
+  var email = document.getElementById('sub-email').value.trim();
+  var btn = document.querySelector('.subscribe-btn');
+  if (!email || !email.includes('@')) {
+    document.getElementById('sub-error').style.display = 'block';
+    document.getElementById('sub-success').style.display = 'none';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  fetch('https://api.encharge.io/v1/people', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Encharge-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjE0ODc1NCwibmFtZSI6ImJhc2UifQ.zicaDH6sR0oNELbT0y0QcOXNaSB5IvdHvJ9vxte2jcw'
+    },
+    body: JSON.stringify({
+      people: [{
+        email: email,
+        firstName: document.getElementById('sub-first').value.trim(),
+        tags: 'growth library'
+      }]
+    })
+  })
+  .then(function(res) {
+    if (res.ok) {
+      document.getElementById('sub-success').style.display = 'block';
+      document.getElementById('sub-error').style.display = 'none';
+      document.getElementById('sub-email').value = '';
+      btn.textContent = 'Sent!';
+    } else {
+      throw new Error('API error');
+    }
+  })
+  .catch(function() {
+    document.getElementById('sub-error').style.display = 'block';
+    document.getElementById('sub-success').style.display = 'none';
+    btn.disabled = false;
+    btn.textContent = 'Send me the library';
+  });
+}
+</script>
+
+<main class="content">
+
+  <section>
+    <div class="section-label">The problem</div>
+    <h2>Why most founders never build <em>the network they need</em></h2>
+    <p>Building a LinkedIn network of ICPs sounds straightforward. Connect with the right people, engage with their content, stay visible. Most founders know the theory. Very few have a system.</p>
+    <p>Without a structured plan, network building becomes reactive. You connect with whoever crosses your feed. You engage when you feel inspired. You make progress in bursts and lose momentum between them. Six months in, you have 200 random connections and no clear pipeline.</p>
+    <p>The difference between a network that produces pipeline and one that does not is not effort. It is architecture. This roadmap gives you that architecture.</p>
+    <div class="callout">
+      <p><strong>The Network Illusion:</strong> most founders believe their network is bigger than it is useful.</p>
+      <p>A large connection count that does not include your ICP is a vanity metric. 500 connected ICPs who know your name and your thinking is a pipeline asset.</p>
+    </div>
+    <p style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;">The 90-day structure:</p>
+    <table class="phase-table">
+      <thead><tr><th>Phase</th><th>Days</th><th>Focus</th><th>Target</th></tr></thead>
+      <tbody>
+        <tr><td><span class="phase-label">Phase 1</span></td><td>1&ndash;30</td><td>Foundation. ICP definition, profile optimisation, first 100 connections.</td><td>100 connected ICPs</td></tr>
+        <tr><td><span class="phase-label">Phase 2</span></td><td>31&ndash;60</td><td>Momentum. Systematic engagement, connection request cadence, relationship tracking.</td><td>250 connected ICPs</td></tr>
+        <tr><td><span class="phase-label">Phase 3</span></td><td>61&ndash;90</td><td>Scale. Warm network activation, content layered in, inbound conversations opening.</td><td>500 connected ICPs</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-label">What you'll walk away with</div>
+    <ul class="outcomes">
+      <li>A structured 90-day network plan personalised to your ICP, current network size, and available time</li>
+      <li>Weekly connection targets and engagement rhythms broken down by phase</li>
+      <li>A scoring model to track whether your network is building toward pipeline or just growing in size</li>
+      <li>A worked example showing how one firm went from 180 random connections to 422 connected ICPs in 90 days</li>
+    </ul>
+    <div class="tools-bar">
+      <span class="tools-bar-label">You need</span>
+      <span class="tools-bar-sep"></span>
+      <p>Claude, ChatGPT or Gemini &nbsp;&middot;&nbsp; Your ICP Profile from Resource 01 &nbsp;&middot;&nbsp; 20 minutes to set up</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Who this is for</div>
+    <h2>This workflow works best if you:</h2>
+    <div class="for-who">
+      <ul>
+        <li>Have a LinkedIn network that is large but not useful, with few actual ICPs connected</li>
+        <li>Know who you want to reach but have never had a structured plan for getting there</li>
+        <li>Want to build a warm ICP network in 90 days without cold pitching or paid advertising</li>
+        <li>Are ready to install the Connection Engine properly rather than treating it as a side activity</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">01</div>
+      <div class="prompt-title-block">
+        <h3>The 90-Day Network Architect</h3>
+        <p class="prompt-sub">Builds your full personalised network growth plan across three phases</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: Creating the full 90-day roadmap. Run this once at the start. It produces a phased plan that tells you exactly what to do each week, how many connections to target, and what your engagement rhythm should look like.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B growth strategist specialising in LinkedIn network architecture for founder-led businesses.
+
+<strong>TASK:</strong> Build a 90-day ICP network growth plan using the inputs below.
+
+<strong>INPUTS:</strong>
+ICP profile: [paste your full ICP profile from Resource 01]
+Current LinkedIn connections: [total number, rough ICP percentage]
+Available time per week: [hours per week you can commit to LinkedIn outreach and engagement]
+Current content status: [posting regularly / occasionally / not yet]
+Starting goal: [number of connected ICPs you want by day 90]
+
+<strong>OUTPUT</strong> a 3-phase plan with:
+- Phase 1 (Days 1 to 30): Weekly targets, key actions, connection sources to focus on
+- Phase 2 (Days 31 to 60): Weekly targets, engagement rhythm, relationship progression criteria
+- Phase 3 (Days 61 to 90): Weekly targets, warm network activation, inbound conversation triggers
+- One weekly non-negotiable action per phase
+- A simple scoring system to assess network quality week by week
+
+<strong>RULES:</strong>
+- Be specific. Give targets, not advice.
+- Assume no paid advertising, no cold email, no purchased lists
+- Base connection rate on realistic acceptance rates (50 to 65% for personalised requests)
+- Output: a structured 3-phase plan the founder can start on Monday</pre>
+    </div>
+    <div class="output-badge">OUTPUT: A personalised 90-day network plan with weekly targets, actions, and a quality scoring system</div>
+  </div>
+
+  <hr class="prompt-divider">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">02</div>
+      <div class="prompt-title-block">
+        <h3>The Weekly Network Sprint</h3>
+        <p class="prompt-sub">Converts your 90-day plan into a focused weekly action list</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: Translating the 90-day plan into a specific this-week action list. Run this every Monday. It tells you exactly who to target, how many requests to send, and what to prioritise based on where you are in the plan.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B network strategist. You help founders execute their weekly ICP connection plan without losing momentum.
+
+<strong>TASK:</strong> Generate a focused weekly action list based on the inputs below.
+
+<strong>INPUTS:</strong>
+Current phase: [Phase 1 / 2 / 3]
+Week number: [e.g. Week 4]
+Connections made so far: [total connected ICPs to date]
+Last week's results: [connections sent / accepted / conversations opened]
+Current blockers or observations: [anything that worked well or did not]
+
+<strong>OUTPUT:</strong>
+- This week's connection target (specific number)
+- Top 5 ICP account types to prioritise this week
+- Weekly engagement minimum (comments per day, connection requests per day)
+- One relationship to advance this week (based on previous engagement)
+- One adjustment based on last week's data
+
+<strong>RULES:</strong>
+- Be direct. Give numbers and actions, not suggestions.
+- Keep outputs actionable. No strategy, only tactics.
+- Output: a weekly action list the founder can start using immediately</pre>
+    </div>
+    <div class="output-badge">OUTPUT: A weekly action list with specific targets, account priorities, and one key adjustment</div>
+  </div>
+
+  <hr class="prompt-divider">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">03</div>
+      <div class="prompt-title-block">
+        <h3>The Network Quality Scorer</h3>
+        <p class="prompt-sub">Assesses whether your growing network is building toward pipeline or just growing in size</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: Checking the quality of your network growth, not just the quantity. Connection count is not the goal. A warm network of connected ICPs who engage with your content and reply to your messages is. Run this check every four weeks.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B pipeline strategist. You assess network quality, not just size.
+
+<strong>TASK:</strong> Score the network growth below and identify whether it is on track to produce pipeline.
+
+<strong>INPUTS:</strong>
+Total new connections this month: [number]
+Estimated ICP match rate: [percentage who match your ICP profile]
+Engagement rate from new connections: [percentage who liked, commented, or replied to anything]
+Warm conversations opened: [number of meaningful DM exchanges with new connections]
+Connection requests sent vs accepted: [sent / accepted]
+
+<strong>OUTPUT:</strong>
+- Overall network quality score out of 10
+- What the data says about the quality of connections being made
+- The one metric most in need of improvement
+- Two specific actions to improve quality over the next 30 days
+
+<strong>RULES:</strong>
+- Be direct. Give a score and a verdict.
+- Focus on pipeline potential, not social metrics
+- Output: a scored assessment with two actionable improvements</pre>
+    </div>
+    <div class="output-badge">OUTPUT: A network quality score with two specific actions to improve it</div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="case-study">
+    <div class="cs-label">Worked example &middot; Meridian Advisory Group</div>
+    <h3>From 180 random connections to 422 connected ICPs in 90 days</h3>
+    <p>A B2B management consulting firm doing &euro;4M in annual revenue. They had 180 LinkedIn connections, most of them former colleagues and peers. Almost none matched their ICP: founders of &euro;2M to &euro;8M professional services businesses.</p>
+    <p>They ran Prompt 1 on a Monday morning, inputting their ICP profile, a 20-hour-per-month availability, and a target of 400 connected ICPs by day 90.</p>
+
+    <p class="cs-section-label">Phase breakdown produced by Prompt 1</p>
+    <table class="cs-table">
+      <thead><tr><th>Phase</th><th>Weekly target</th><th>Non-negotiable action</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Phase 1 (Days 1&ndash;30)</td><td>15 connection requests per week, targeting founder profiles only</td><td>Run the ICP Activity Scanner every Monday. Prioritise new posts over passive profiles.</td><td>87 new ICP connections by day 30</td></tr>
+        <tr><td>Phase 2 (Days 31&ndash;60)</td><td>20 connection requests per week, plus 3 to 5 daily comments on ICP posts</td><td>Send one warm follow-up message per week to the 5 highest-engagement connections from Phase 1.</td><td>194 ICP connections by day 60</td></tr>
+        <tr><td>Phase 3 (Days 61&ndash;90)</td><td>25 connection requests per week, plus first LinkedIn post published</td><td>Track which ICP connections engage with the post. These are the warm leads to prioritise for outreach.</td><td>422 ICP connections by day 90</td></tr>
+      </tbody>
+    </table>
+
+    <p class="cs-section-label">Network Quality Score at day 90 (Prompt 3 output)</p>
+    <div class="quote-block">Score: 7.5 / 10. ICP match rate: 81%. Engagement rate from new connections: 34%. Warm conversations opened: 22. The one metric to improve is DM response rate. Two actions: introduce a value-first message to new connections within 48 hours of acceptance, and identify the 10 highest-engagement ICPs for a direct outreach test in month four.</div>
+
+    <div class="result-box">
+      <div class="time-badge">90 days.</div>
+      <p>422 connected ICPs. 22 warm conversations opened. 4 calls booked without a single cold pitch.<br><br><strong>Zero paid advertising. Zero purchased lists. One structured system.</strong></p>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-label">What to do right now</div>
+    <ol class="steps-list">
+      <li>Run Prompt 1 today. Have your ICP Profile from Resource 01 ready to paste in. This is the one-time setup that drives everything else.</li>
+      <li>Set your 90-day start date. Block 15 minutes every Monday to run the Weekly Network Sprint. This is the only recurring commitment the plan requires.</li>
+      <li>Score your existing connections before you start. Knowing how many are true ICPs tells you how far you actually are from your target.</li>
+      <li>Run Prompt 3 at the end of weeks 4, 8, and 12. Quality check at each phase transition. Adjust before momentum is lost.</li>
+      <li>When conversations open, move them to the AI Connection Request Framework (Resource 04) follow-up sequence. The network is the start, not the end.</li>
+    </ol>
+  </section>
+
+  <div class="where-fits">
+    <div class="where-fits-label">Where this fits</div>
+    <p>The AI Founder Network Plan is the capstone of the Connection Engine. Resources 01 through 05 build the skills and habits that make this plan work: ICP clarity, profile conversion, commenting, connection requests, and feed tracking. This resource turns all of that into a structured 90-day operating rhythm.</p>
+    <p>The 500 connected ICPs you build here become the audience for your Attention Engine content, the subjects of your Signal Engine monitoring, and the pipeline of your Pipeline Engine. The Connection Engine does not stand alone. It is the foundation everything else runs on.</p>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-eyebrow">The Growth OS</div>
+    <h2>The network is built.</h2>
+    <div class="cta-subhead">Now install the system that converts it.</div>
+    <p class="cta-body">The Growth OS helps founder-led B2B companies build predictable pipeline. Compete on intelligence, not headcount. AI is your multiplier. This system is your advantage.</p>
+    <a href="https://jamesbrooks.com/growth-os" class="cta-btn">See the Growth OS &rarr;</a>
+    <p class="cta-note">jamesbrooks.com/growth-os</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">James Brooks</div>
+    <div class="footer-meta">The Growth OS &nbsp;&middot;&nbsp; jamesbrooks.com</div>
+  </div>
+</footer>
+
+<script>
+function copyPrompt(btn) {
+  var pre = btn.parentElement.querySelector('pre');
+  var text = pre.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>

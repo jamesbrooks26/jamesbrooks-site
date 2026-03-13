@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Feed Intelligence Tracker | James Brooks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=EB+Garamond:wght@400;500&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:       #0B1F3A;
+    --mid-navy:   #152E50;
+    --gold:       #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-muted: #A8883A;
+    --off-white:  #F5F1EA;
+    --warm-white: #FAF8F4;
+    --text-muted: #6B7E94;
+    --pale-blue:  #D6E4F7;
+    --mid-blue:   #2E4E8A;
+    --max-w: 780px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--warm-white); color: var(--navy); font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; }
+
+  .hero { background: var(--navy); padding: 72px 24px 60px; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events:none; }
+  .hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; text-align: center; }
+  .hero-os { font-family:'DM Sans',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .hero-engine-label { display:inline-flex; align-items:center; gap:12px; font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:28px; }
+  .hero-engine-label::before,.hero-engine-label::after { content:''; display:block; width:28px; height:1px; background:var(--gold); opacity:0.5; }
+  .hero h1 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(34px,6vw,54px); line-height:1.1; color:var(--off-white); letter-spacing:-0.01em; margin-bottom:22px; }
+  .hero h1 em { font-style:italic; color:var(--gold-light); }
+  .hero-sub { font-family:'EB Garamond',serif; font-size:19px; color:rgba(245,241,234,0.75); max-width:560px; margin:0 auto 36px; line-height:1.6; }
+  .promise-strip { display:flex; justify-content:center; border-top:1px solid rgba(201,168,76,0.2); border-bottom:1px solid rgba(201,168,76,0.2); padding:18px 0; flex-wrap:wrap; }
+  .promise-item { display:flex; align-items:center; gap:9px; padding:6px 24px; color:var(--off-white); font-size:13px; font-weight:300; border-right:1px solid rgba(201,168,76,0.2); }
+  .promise-item:last-child { border-right:none; }
+
+  .subscribe-bar { background:var(--mid-navy); border-top:3px solid var(--gold); border-bottom:1px solid rgba(201,168,76,0.12); padding:20px 24px; }
+  .subscribe-bar-inner { max-width:var(--max-w); margin:0 auto; display:flex; flex-direction:column; gap:16px; }
+  .subscribe-bar-text { flex:1; min-width:200px; }
+  .subscribe-bar-text p { margin:0; font-family:'DM Sans',sans-serif; font-size:13.5px; font-weight:300; color:var(--off-white); line-height:1.5; max-width:100%; }
+  .subscribe-bar-text p strong { font-weight:600; color:var(--gold-light); }
+  .subscribe-form { display:flex; gap:8px; flex-wrap:nowrap; width:100%; }
+  .subscribe-input { background:rgba(255,255,255,0.07); border:1px solid rgba(201,168,76,0.25); border-radius:3px; padding:12px 16px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300; color:var(--off-white); flex:1; min-width:0; outline:none; transition:border-color 0.2s; }
+  .subscribe-input::placeholder { color:rgba(245,241,234,0.35); }
+  .subscribe-input:focus { border-color:rgba(201,168,76,0.6); }
+  .subscribe-btn { background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:12px 28px; border-radius:3px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; flex-shrink:0; }
+  .subscribe-btn:hover { background:var(--gold-light); }
+  .subscribe-note { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:6px; }
+
+  .content { max-width:var(--max-w); margin:0 auto; padding:0 24px 80px; }
+  section { padding-top:52px; }
+
+  .section-label { font-family:'EB Garamond',serif; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--gold); opacity:0.2; }
+
+  h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(24px,4vw,32px); line-height:1.2; color:var(--navy); letter-spacing:-0.01em; margin-bottom:18px; }
+  h2 em { font-style:italic; color:var(--gold-muted); }
+  p { font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.75; max-width:65ch; margin-bottom:14px; }
+
+  .callout { background:var(--navy); border-left:3px solid var(--gold); border-radius:2px; padding:22px 26px; margin:28px 0; }
+  .callout p { color:var(--off-white); margin:0; font-size:15px; max-width:100%; }
+  .callout p+p { margin-top:10px; }
+  .callout strong { color:var(--gold-light); font-weight:600; }
+
+  .shift-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0; }
+  .shift-card { background:var(--off-white); border-radius:4px; padding:18px 20px; border-top:2px solid transparent; }
+  .shift-card.old { border-top-color:var(--text-muted); }
+  .shift-card.new { border-top-color:var(--gold); }
+  .shift-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); margin-bottom:7px; }
+  .shift-card.new .shift-label { color:var(--gold-muted); }
+  .shift-card p { margin:0; font-size:14px; color:var(--navy); max-width:100%; }
+
+  .outcomes { list-style:none; margin:20px 0 28px; }
+  .outcomes li { display:flex; align-items:flex-start; gap:13px; padding:11px 0; border-bottom:1px solid rgba(11,31,58,0.08); font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.6; }
+  .outcomes li::before { content:''; width:6px; height:6px; background:var(--gold); border-radius:50%; flex-shrink:0; margin-top:9px; }
+
+  .tools-bar { background:var(--mid-navy); border-radius:4px; padding:14px 20px; display:flex; align-items:center; gap:12px; margin:26px 0; flex-wrap:wrap; }
+  .tools-bar-label { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+  .tools-bar-sep { width:1px; height:16px; background:rgba(201,168,76,0.3); flex-shrink:0; }
+  .tools-bar p { color:var(--off-white); font-size:14px; font-weight:300; margin:0; max-width:100%; }
+
+  .for-who { background:var(--off-white); border-radius:4px; padding:28px 28px; margin:24px 0; }
+  .for-who ul { list-style:none; margin:0; }
+  .for-who ul li { display:flex; align-items:flex-start; gap:12px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; padding:9px 0; border-bottom:1px solid rgba(11,31,58,0.08); line-height:1.6; }
+  .for-who ul li:last-child { border-bottom:none; }
+  .for-who ul li::before { content:'→'; color:var(--gold-muted); font-weight:600; flex-shrink:0; }
+
+  .rule { border:none; border-top:1px solid rgba(11,31,58,0.1); margin:44px 0; }
+
+  .prompt-section { padding-top:48px; }
+  .prompt-header { display:flex; align-items:center; gap:18px; margin-bottom:14px; }
+  .prompt-number { width:42px; height:42px; background:var(--mid-blue); color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:700; font-size:17px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid rgba(201,168,76,0.25); }
+  .prompt-title-block h3 { font-family:'Playfair Display',serif; font-weight:700; font-size:21px; color:var(--navy); letter-spacing:-0.01em; }
+  .prompt-title-block .prompt-sub { font-family:'EB Garamond',serif; font-size:15px; color:var(--text-muted); font-style:italic; margin:0; max-width:100%; padding:0; }
+  .what-doing { background:var(--off-white); border-radius:4px; padding:14px 18px; margin-bottom:18px; }
+  .what-doing p { font-family:'EB Garamond',serif; font-size:16px; color:var(--text-muted); font-style:italic; margin:0; max-width:100%; }
+  .prompt-code { background:var(--navy); border-radius:4px; padding:26px 28px; margin-bottom:14px; position:relative; }
+  .prompt-code::before { content:'PROMPT'; position:absolute; top:13px; right:16px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; color:var(--gold); opacity:0.6; }
+  .prompt-code pre { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:300; line-height:1.85; color:var(--off-white); white-space:pre-wrap; word-break:break-word; }
+  .prompt-code pre strong { color:var(--gold-light); font-weight:600; }
+  .output-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.28); border-radius:3px; padding:8px 14px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:var(--gold-muted); }
+  .output-badge::before { content:'✓'; color:var(--gold); font-size:14px; }
+  .prompt-divider { border:none; border-top:1px solid rgba(11,31,58,0.08); margin:44px 0 0; }
+
+  .case-study { background:var(--navy); border-radius:6px; padding:38px 34px; margin:52px 0; position:relative; overflow:hidden; }
+  .case-study::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold) 0%,transparent 100%); }
+  .cs-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+  .case-study h3 { font-family:'Playfair Display',serif; font-weight:700; font-size:21px; color:var(--off-white); margin-bottom:14px; }
+  .case-study p { color:rgba(245,241,234,0.75); max-width:100%; }
+  .quote-block { background:rgba(245,241,234,0.06); border-left:2px solid var(--gold); border-radius:2px; padding:13px 17px; margin:14px 0; font-family:'EB Garamond',serif; font-size:17px; font-style:italic; color:var(--off-white); line-height:1.6; }
+  .cs-table { width:100%; border-collapse:collapse; margin:18px 0; font-size:13px; }
+  .cs-table th { background:rgba(201,168,76,0.14); color:var(--gold-light); font-family:'DM Sans',sans-serif; font-weight:600; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; padding:9px 13px; text-align:left; border-bottom:1px solid rgba(201,168,76,0.2); }
+  .cs-table td { padding:10px 13px; vertical-align:top; color:rgba(245,241,234,0.8); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.05); font-size:13px; }
+  .cs-table tr:last-child td { border-bottom:none; }
+  .cs-table tr:nth-child(even) td { background:rgba(255,255,255,0.03); }
+  .result-box { background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:18px 20px; margin-top:22px; }
+  .result-box p { color:var(--off-white); margin:0; font-size:14px; max-width:100%; }
+  .result-box strong { color:var(--gold-light); font-weight:600; }
+  .time-badge { display:inline-block; font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--gold-light); margin-bottom:6px; }
+  .cs-section-label { color:var(--gold); margin-top:24px; margin-bottom:10px; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-family:'DM Sans',sans-serif; }
+
+  .steps-list { counter-reset:steps; list-style:none; margin:20px 0; }
+  .steps-list li { counter-increment:steps; display:flex; align-items:flex-start; gap:15px; padding:14px 0; border-bottom:1px solid rgba(11,31,58,0.08); font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:#2a3a50; line-height:1.65; }
+  .steps-list li::before { content:counter(steps); width:28px; height:28px; background:var(--navy); color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:700; font-size:13px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:3px; }
+
+  .where-fits { background:var(--navy); border-radius:4px; padding:28px 30px; margin:48px 0 0; }
+  .where-fits-label { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .where-fits p { color:rgba(245,241,234,0.8); font-size:15px; max-width:100%; margin-bottom:10px; }
+  .where-fits p:last-child { margin-bottom:0; }
+
+  .cta-block { background:var(--navy); border-radius:6px; padding:48px 40px; margin-top:52px; text-align:center; position:relative; overflow:hidden; }
+  .cta-block::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,168,76,0.1) 0%, transparent 70%); pointer-events:none; }
+  .cta-block::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .cta-eyebrow { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; position:relative; }
+  .cta-block h2 { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(24px,4vw,34px); color:var(--off-white); line-height:1.2; margin-bottom:6px; position:relative; max-width:100%; }
+  .cta-block h2 em { color:var(--gold-light); font-style:italic; }
+  .cta-subhead { font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(18px,3vw,24px); color:var(--gold-light); font-style:italic; margin-bottom:18px; position:relative; }
+  .cta-block .cta-body { font-family:'EB Garamond',serif; font-size:18px; color:rgba(245,241,234,0.75); max-width:520px; margin:0 auto 30px; line-height:1.65; position:relative; }
+  .cta-btn { display:inline-block; background:var(--gold); color:var(--navy); font-family:'DM Sans',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; padding:15px 38px; border-radius:3px; position:relative; transition:background 0.2s, transform 0.15s; }
+  .cta-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
+  .cta-note { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:rgba(245,241,234,0.35); margin-top:14px; position:relative; }
+
+  footer { background:var(--mid-navy); padding:26px 24px; border-top:1px solid rgba(201,168,76,0.15); }
+  .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .footer-brand { font-family:'Playfair Display',serif; font-weight:700; font-size:16px; color:var(--off-white); }
+  .footer-meta { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:300; color:var(--text-muted); }
+
+  @media(max-width:600px){
+    .promise-strip{flex-direction:column;align-items:center;}
+    .promise-item{border-right:none;border-bottom:1px solid rgba(201,168,76,0.15);padding:8px 0;}
+    .promise-item:last-child{border-bottom:none;}
+    .shift-grid{grid-template-columns:1fr;}
+    .cta-block{padding:34px 22px;}
+    .case-study{padding:26px 20px;}
+    .cs-table{font-size:12px;}
+    .cs-table td,.cs-table th{padding:7px 9px;}
+    .footer-inner{flex-direction:column;text-align:center;}
+    .subscribe-form{flex-wrap:wrap;}
+    .subscribe-input{width:100%;flex:none;}
+    .subscribe-btn{width:100%;text-align:center;}
+  }
+
+  /* COPY BUTTON */
+  .copy-btn { position:absolute; top:13px; left:16px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.25); border-radius:3px; padding:4px 10px; cursor:pointer; transition:background 0.2s; }
+  .copy-btn:hover { background:rgba(201,168,76,0.22); }
+  .copy-btn.copied { color:var(--off-white); background:rgba(201,168,76,0.25); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+  <div class="hero-engine-label">Connection Engine</div>
+    <h1>The AI <em>Feed Intelligence</em> Tracker</h1>
+    <p class="hero-sub">Know exactly which ICPs to engage with each week, and what to say, so every comment moves a relationship forward.</p>
+    <div class="promise-strip">
+      <div class="promise-item">&#9203; 15-minute weekly setup</div>
+      <div class="promise-item">&#128202; Weekly priority list</div>
+      <div class="promise-item">&#127919; No guesswork</div>
+    </div>
+  </div>
+</header>
+
+<div class="subscribe-bar">
+  <div class="subscribe-bar-inner">
+    <div class="subscribe-bar-text">
+      <p><strong>This is one of 24 free resources</strong> in the Growth Library. Get the full library delivered to your inbox.</p>
+    </div>
+    <div style="width:100%;">
+      <div class="subscribe-form">
+        <input type="text" class="subscribe-input" id="sub-first" placeholder="First name">
+        <input type="email" class="subscribe-input" id="sub-email" placeholder="Email address">
+        <button class="subscribe-btn" onclick="handleSubscribe()">Send me the library</button>
+      </div>
+      <p class="subscribe-success" id="sub-success" style="display:none;color:var(--gold-light);font-size:13px;margin-top:6px;">You're in. Check your inbox shortly.</p>
+      <p class="subscribe-error" id="sub-error" style="display:none;color:#e07070;font-size:13px;margin-top:6px;">Something went wrong. Please try again.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function handleSubscribe() {
+  var email = document.getElementById('sub-email').value.trim();
+  var btn = document.querySelector('.subscribe-btn');
+  if (!email || !email.includes('@')) {
+    document.getElementById('sub-error').style.display = 'block';
+    document.getElementById('sub-success').style.display = 'none';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  fetch('https://api.encharge.io/v1/people', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Encharge-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjE0ODc1NCwibmFtZSI6ImJhc2UifQ.zicaDH6sR0oNELbT0y0QcOXNaSB5IvdHvJ9vxte2jcw'
+    },
+    body: JSON.stringify({
+      people: [{
+        email: email,
+        firstName: document.getElementById('sub-first').value.trim(),
+        tags: 'growth library'
+      }]
+    })
+  })
+  .then(function(res) {
+    if (res.ok) {
+      document.getElementById('sub-success').style.display = 'block';
+      document.getElementById('sub-error').style.display = 'none';
+      document.getElementById('sub-email').value = '';
+      btn.textContent = 'Sent!';
+    } else {
+      throw new Error('API error');
+    }
+  })
+  .catch(function() {
+    document.getElementById('sub-error').style.display = 'block';
+    document.getElementById('sub-success').style.display = 'none';
+    btn.disabled = false;
+    btn.textContent = 'Send me the library';
+  });
+}
+</script>
+
+<main class="content">
+
+  <section>
+    <div class="section-label">The problem</div>
+    <h2>The truth about <em>LinkedIn scrolling</em></h2>
+    <p>Most B2B founders scroll LinkedIn every morning with no real system. They like a few posts, leave a vague comment, and move on. They are present without being purposeful.</p>
+    <p>The problem is not the time they spend. It is what they do with it. Without a structured way to track which ICPs are active and what they are talking about, engagement becomes random. Random engagement produces random results.</p>
+    <p>This workflow turns your LinkedIn feed into an intelligence system. Each week you know exactly which of your target ICPs are posting, what they are focused on, and the precise angle to use when you engage.</p>
+    <div class="callout">
+      <p><strong>The Feed Blind Spot:</strong> most founders treat their LinkedIn feed as a news source rather than a sales intelligence tool.</p>
+      <p>Every post from an ICP is a data point. Every comment they leave is a signal. Most founders miss all of it.</p>
+    </div>
+    <p style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;">The shift:</p>
+    <div class="shift-grid">
+      <div class="shift-card old">
+        <div class="shift-label">Old way</div>
+        <p>Scroll passively and engage when something catches your eye. Each week starts from zero.</p>
+      </div>
+      <div class="shift-card new">
+        <div class="shift-label">New way</div>
+        <p>Run a structured weekly tracker that tells you who to engage with and why. Each week builds on the last.</p>
+      </div>
+    </div>
+    <p>That single shift turns your LinkedIn time from a habit into a system.</p>
+  </section>
+
+  <section>
+    <div class="section-label">What you'll walk away with</div>
+    <ul class="outcomes">
+      <li>A prioritised weekly list of ICPs to engage with based on their activity and buying signals</li>
+      <li>Three angle options per ICP, so you always know what to say and why it will land</li>
+      <li>A simple tracking system that turns weekly engagement into cumulative relationship progress</li>
+      <li>A worked example showing how one firm moved three ICPs from Cold to Warm in a single week</li>
+    </ul>
+    <div class="tools-bar">
+      <span class="tools-bar-label">You need</span>
+      <span class="tools-bar-sep"></span>
+      <p>Claude, ChatGPT or Gemini &nbsp;&middot;&nbsp; Your ICP list &nbsp;&middot;&nbsp; 15 minutes per week</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Who this is for</div>
+    <h2>This workflow works best if you:</h2>
+    <div class="for-who">
+      <ul>
+        <li>Run a B2B business doing &euro;1M&ndash;&euro;10M and spend time on LinkedIn without knowing if it is producing anything</li>
+        <li>Have a clear ICP but no structured way to track who among them is active and ready for engagement</li>
+        <li>Find yourself commenting inconsistently because you do not know which posts are worth your attention</li>
+        <li>Want your LinkedIn time to compound into real pipeline rather than disappear into the feed</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">01</div>
+      <div class="prompt-title-block">
+        <h3>The ICP Activity Scanner</h3>
+        <p class="prompt-sub">Identifies which of your target ICPs are active this week and what signals they are sending</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: Building a weekly target list of ICPs worth engaging with. Engaging with the wrong posts is wasted time. This prompt ensures every comment this week reaches someone in your target network and arrives at the right moment.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B sales intelligence analyst. Your job is to surface the highest-value LinkedIn engagement opportunities from a list of target ICPs.
+
+<strong>TASK:</strong> Using the inputs below, analyse each ICP's recent LinkedIn activity and produce a prioritised weekly engagement list.
+
+<strong>INPUTS:</strong>
+ICP list: [name / role / company for each, 10 to 20 people]
+Recent activity observed: [for each ICP, describe any posts, comments, or activity visible on their profile this week]
+Your ICP profile: [paste your ICP profile from Resource 01]
+
+<strong>OUTPUT</strong> a prioritised table with these columns:
+- ICP name and role
+- Post type or activity observed
+- Signal this sends (what it tells you about their mindset or buying stage)
+- Priority level: Very High / High / Medium
+- Recommended engagement angle (one sentence)
+
+<strong>RULES:</strong>
+- Prioritise ICPs with active pain posts or growth signals above passive content
+- Flag anyone who has posted in the last 48 hours as Very High priority
+- 10 ICPs maximum per week. Quality over volume.
+- Output: a clean table ready to use as your engagement agenda</pre>
+    </div>
+    <div class="output-badge">OUTPUT: A prioritised weekly list of ICPs to engage with, with one engagement angle per person</div>
+  </div>
+
+  <hr class="prompt-divider">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">02</div>
+      <div class="prompt-title-block">
+        <h3>The Engagement Angle Generator</h3>
+        <p class="prompt-sub">Produces three comment angles per ICP designed to open conversations rather than close them</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: For each high-priority ICP from Prompt 1, generating three distinct ways to engage with their post. Different frameworks work for different post types. This prompt gives you options and tells you which to use.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B relationship strategist. Your one metric is comment-to-reply rate.
+
+<strong>TASK:</strong> Write three engagement angle options for the ICP post below using these frameworks:
+
+Framework 1 &ndash; The Informed Question: ask something specific that only someone with relevant experience would ask
+Framework 2 &ndash; The Contrarian Add: agree with the core point, then introduce a nuance that invites a reply
+Framework 3 &ndash; The Shared Observation: reference a relevant result or pattern without naming your service
+
+<strong>INPUTS:</strong>
+ICP role and company type: [who they are]
+Post topic or excerpt: [paste or describe the post]
+Signal this post sends: [from your Prompt 1 output]
+Your core expertise: [what you help with, one sentence]
+
+<strong>RULES:</strong>
+- Each angle must be 2 to 3 sentences only
+- No emojis, no CTAs, no service mentions
+- The goal is a reply from the ICP, not likes from their audience
+- Output: three numbered angles with framework label and one-line rationale for when to use each</pre>
+    </div>
+    <div class="output-badge">OUTPUT: Three ready-to-use comment angles per ICP, each designed to open a conversation</div>
+  </div>
+
+  <hr class="prompt-divider">
+
+  <div class="prompt-section">
+    <div class="prompt-header">
+      <div class="prompt-number">03</div>
+      <div class="prompt-title-block">
+        <h3>The Weekly Feed Tracker</h3>
+        <p class="prompt-sub">Builds a simple running record of engagement so relationships compound over time</p>
+      </div>
+    </div>
+    <div class="what-doing">
+      <p>What you're doing: Logging each engagement so the system has memory. Without a tracker, every week starts from scratch. With one, your engagement compounds. Run this on Friday. It formats your weekly activity into a record you can act on the following Monday.</p>
+    </div>
+    <div class="prompt-code">
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy prompt</button>
+      <pre><strong>ROLE:</strong> B2B pipeline strategist. You help founders convert consistent LinkedIn engagement into trackable relationship progress.
+
+<strong>TASK:</strong> Using the inputs below, create a weekly feed tracker entry for each ICP you engaged with this week.
+
+<strong>INPUTS:</strong>
+ICP name and role: [from previous prompts]
+Post they published: [brief description of the post you engaged with]
+Comment you left: [paste the comment you used]
+Their response (if any): [paste or describe their reply]
+Connection status: [not connected / request sent / connected]
+
+<strong>RULES:</strong>
+- Score the engagement quality 1 to 5 (1 = no reply, 5 = active conversation)
+- Flag if a connection request is now appropriate
+- Recommend the next engagement action for this ICP next week
+- Note the cumulative relationship stage: Cold / Warming / Warm / Hot
+- Output: a structured tracker entry ready to paste into your weekly log</pre>
+    </div>
+    <div class="output-badge">OUTPUT: A structured weekly tracker entry per ICP showing engagement quality, connection status, and next recommended action</div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="case-study">
+    <div class="cs-label">Worked example &middot; Caldwell Strategic Advisors</div>
+    <h3>3 new ICP connections in week one. 7 engagement scores of 4 or above.</h3>
+    <p>A B2B advisory firm targeting founders of &euro;3M to &euro;10M professional services businesses. They had a clear ICP but no system for tracking who was active. Each week looked the same: scroll, like, occasionally comment, repeat.</p>
+    <p>Here is what the workflow produced in week one.</p>
+
+    <p class="cs-section-label">Prompt 1 output: Weekly Priority List (top 4 of 15 ICPs tracked)</p>
+    <table class="cs-table">
+      <thead><tr><th>Post type</th><th>Signal</th><th>Priority</th><th>Engagement angle</th></tr></thead>
+      <tbody>
+        <tr><td>Founder shares revenue milestone</td><td>Growth mindset, scaling</td><td>High</td><td>Ask what changed in their pipeline to hit the number</td></tr>
+        <tr><td>CEO venting about missed targets</td><td>Active pain, open to change</td><td>Very High</td><td>Validate the frustration, share a brief observation</td></tr>
+        <tr><td>Hiring post for sales role</td><td>Scaling signal, budget unlocked</td><td>High</td><td>Ask what is driving the need for headcount right now</td></tr>
+        <tr><td>Post on referral-based growth</td><td>Problem matches offer</td><td>Very High</td><td>Offer a nuanced counterpoint without pitching</td></tr>
+      </tbody>
+    </table>
+
+    <p class="cs-section-label">Prompt 2 output: Engagement Angles for Top ICP</p>
+    <p style="color:rgba(245,241,234,0.6);font-size:13px;font-family:'DM Sans',sans-serif;margin-bottom:8px;">ICP: CEO of &euro;6M professional services firm | Signal: Posted about missing Q3 target and blaming referral slowdown</p>
+    <div class="quote-block">Angle 1 (Informed Question): "Referral slowdowns hit differently when they are your primary channel. What did Q3 tell you about where the pipeline is actually coming from, and where it is not?"</div>
+    <div class="quote-block">Angle 2 (Contrarian Add): "Missing a target because of referral dependency is a systems problem, not a sales problem. Most firms try to fix it by adding headcount. The ones who fix it structurally do it differently."</div>
+    <div class="quote-block">Angle 3 (Shared Observation): "Firms at your stage often find that the referral slowdown is not the real issue. It is the absence of anything running in parallel. The gap shows up in the numbers before anyone wants to name it."</div>
+
+    <p style="margin-top:18px;">They selected Angle 2. The CEO replied within four hours. A connection request was sent and accepted the same day.</p>
+
+    <div class="result-box">
+      <div class="time-badge">Week one.</div>
+      <p>3 new ICP connections. 7 engagement scores of 4 or above. Two ICPs moved from Cold to Warming after a single structured comment.<br><br><strong>All of it from 15 minutes on Monday morning.</strong></p>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-label">What to do right now</div>
+    <ol class="steps-list">
+      <li>Build your ICP list before you run Prompt 1. Start with 10 to 15 names. These are founders or decision-makers you want in your pipeline.</li>
+      <li>Run Prompt 1 on Monday morning. Block 15 minutes. This sets your engagement agenda for the week.</li>
+      <li>Leave your first comments on Monday or Tuesday using Prompt 2. Prioritise ICPs posting about active problems.</li>
+      <li>Log each engagement using Prompt 3 on Friday. This turns random activity into a compounding system.</li>
+      <li>Review your tracker the following Monday. ICPs who replied move up the priority list. ICPs who did not get a different angle next week.</li>
+    </ol>
+  </section>
+
+  <div class="where-fits">
+    <div class="where-fits-label">Where this fits</div>
+    <p>The Feed Intelligence Tracker is the operating system for your weekly LinkedIn activity. It connects directly to the AI Comment Visibility Engine (Resource 03) and feeds into the AI Connection Request Framework (Resource 04) by identifying exactly when a connection request is the right next move.</p>
+    <p>Over 90 days, a structured tracker compounds. Random engagement produces random results. Tracked engagement produces a network of ICPs who know your name, recognise your thinking, and are primed to respond when you reach out.</p>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-eyebrow">The Growth OS</div>
+    <h2>Your feed is mapped.</h2>
+    <div class="cta-subhead">Now build the system around it.</div>
+    <p class="cta-body">The Growth OS helps founder-led B2B companies build predictable pipeline. Compete on intelligence, not headcount. AI is your multiplier. This system is your advantage.</p>
+    <a href="https://jamesbrooks.com/growth-os" class="cta-btn">See the Growth OS &rarr;</a>
+    <p class="cta-note">jamesbrooks.com/growth-os</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">James Brooks</div>
+    <div class="footer-meta">The Growth OS &nbsp;&middot;&nbsp; jamesbrooks.com</div>
+  </div>
+</footer>
+
+<script>
+function copyPrompt(btn) {
+  var pre = btn.parentElement.querySelector('pre');
+  var text = pre.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
